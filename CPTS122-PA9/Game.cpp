@@ -108,7 +108,8 @@ void Game::start(void)
 void Game::showSplashScreen(void)
 {
 	SplashScreen splashScreen;
-	splashScreen.show(mMainWindow);
+	splashScreen.LoadGraphics();
+	splashScreen.show(true);
 	mGameState = SHOWING_MENU;
 }
 
