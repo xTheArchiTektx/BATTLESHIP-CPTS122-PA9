@@ -54,6 +54,10 @@ void Game::gameLoop(void)
 			{
 				mGameState = EXITING;
 			}
+			else if (currentEvent.type == sf::Event::Resized)
+			{
+
+			}
 		}
 
 		break;
@@ -78,7 +82,7 @@ void Game::start(void)
 		return;
 
 	// Create a window.
-	mMainWindow.create(sf::VideoMode(560, 610, 32), "Pang!");
+	mMainWindow.create(sf::VideoMode(560, 560), "Pang!");
 	mGameState = SHOWING_SPLASH;
 
 	// Run the gameloop.
