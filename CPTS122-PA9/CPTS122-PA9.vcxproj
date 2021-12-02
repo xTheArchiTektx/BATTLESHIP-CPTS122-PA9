@@ -152,6 +152,7 @@
     <ClCompile Include="SplashScreen.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="DisplayScreen.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Menu.hpp" />
     <ClInclude Include="PA9.hpp" />
