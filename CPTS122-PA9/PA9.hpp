@@ -20,3 +20,7 @@ using sf::Texture;
 using sf::Font;
 using sf::Text;
 using sf::Music;
+using std::string;
+using std::endl;
+using std::cin;
+using std::cout;

@@ -8,7 +8,8 @@
 #ifndef GAME
 #define GAME
 
-#include "Menu.hpp"
+#include "Options.hpp"
+#include "Credits.hpp"
 #include "SplashScreen.hpp"
 
 class Game
@@ -17,7 +18,7 @@ private:
 	// Data Types
 	typedef enum gamestate
 	{
-		UNINITIALIZED, SHOWING_SPLASH, PAUSED, SHOWING_MENU, PLAYING, EXITING
+		UNINITIALIZED, SHOWING_SPLASH, PAUSED, SHOWING_MENU, PLAYING, EXITING, CREDIT, OPTION
 	}GameState;
 
 	// Data Members
@@ -30,6 +31,8 @@ private:
 
 	static void showSplashScreen(void);
 	static void showMenu(void);
+	static void showOptions(void);
+	static void showCredits(void);
 
 public:
 	// Member Functons

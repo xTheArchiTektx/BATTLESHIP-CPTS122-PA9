@@ -42,6 +42,14 @@ void Game::gameLoop(void)
 		showMenu();
 		break;
 
+	case OPTION:
+		showOptions();
+		break;
+
+	case CREDIT:
+		showCredits();
+		break;
+
 	case PLAYING:
 	{
 		sf::Event currentEvent;
@@ -140,6 +148,52 @@ void Game::showMenu(void)
 
 	case Menu::PLAY:
 		mGameState = PLAYING;
+		break;
+
+	case Menu::OPTION:
+		mGameState = OPTION;
+
+	case Menu::CREDIT:
+		mGameState = CREDIT;
+	}
+}
+
+void Game::showOptions(void)
+{
+	Options optionsMenu;
+	Menu::MenuResult result = optionsMenu.show(mMainWindow);
+
+	// Set the game state.
+	switch (result)
+	{
+	case Options::optionsresult::BACK:
+		mGameState = SHOWING_MENU;
+		break;
+
+	case Options::optionsresult::CONTROLS:
+		break;
+
+	case Options::optionsresult::VIDEO:
+		break;
+		
+	case Options::optionsresult::AUDIO:
+		break;
+	}
+}
+
+void Game::showCredits(void)
+{
+	DisplayScreen credits;
+	
+
+	Credits creditsMenu;
+	Menu::MenuResult result = creditsMenu.show(mMainWindow);
+
+	// Set the game state.
+	switch (result)
+	{
+	case Options::optionsresult::BACK:
+		mGameState = SHOWING_MENU;
 		break;
 	}
 }

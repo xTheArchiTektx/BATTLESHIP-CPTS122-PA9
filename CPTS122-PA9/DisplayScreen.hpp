@@ -25,9 +25,13 @@
 class DisplayScreen
 {
 public:
+		// Constructors
 	DisplayScreen(void);
 
-	RenderWindow getWindow(void);
+		// Setters
+	void setFont(string font);
+	void setTexture(string texture);
+	void setMusic(string music);
 
 /**********************************************************************************************************************************************
 * Function: show()

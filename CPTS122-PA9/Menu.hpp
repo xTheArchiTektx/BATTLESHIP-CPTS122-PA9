@@ -16,7 +16,7 @@ public:
 	// Data Types
 	typedef enum menuresult
 	{
-		NOTHING, EXIT, PLAY
+		NOTHING, EXIT, PLAY, OPTION, CREDIT
 	}MenuResult;
 
 	typedef struct menuitem
@@ -26,7 +26,7 @@ public:
 		MenuResult action;
 	}MenuItem;
 
-private:
+protected:
 	// Data Members
 	std::list<MenuItem> mMenuItems;
 	Texture mMenuT;

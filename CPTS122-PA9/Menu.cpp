@@ -33,7 +33,7 @@ Menu::MenuResult Menu::show(sf::RenderWindow& window)
 	optionsButton.mRect.height = 60; // bottom - top
 	optionsButton.mRect.left = 275;
 	optionsButton.mRect.width = 225; // right - left
-	optionsButton.action = EXIT;
+	optionsButton.action = OPTION;
 
 		// Credits menu item coordinates.
 	MenuItem creditsButton;
@@ -41,7 +41,7 @@ Menu::MenuResult Menu::show(sf::RenderWindow& window)
 	creditsButton.mRect.height = 60; // bottom - top
 	creditsButton.mRect.left = 275;
 	creditsButton.mRect.width = 225; // right - left
-	creditsButton.action = EXIT;
+	creditsButton.action = CREDIT;
 
 		// Exit menu item coordinates.
 	MenuItem exitButton;

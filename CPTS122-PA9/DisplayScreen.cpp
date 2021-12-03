@@ -11,3 +11,15 @@ void DisplayScreen::show(Text screenText, bool isSound, RenderWindow& window)
 		mAudio.play();
 	}
 }
+
+void DisplayScreen::setFont(string font)
+{
+	Font newFont;
+	newFont.loadFromFile(font);
+
+}
+
+void setTexture(string texture)
+{
+
+}
