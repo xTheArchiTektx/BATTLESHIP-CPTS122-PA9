@@ -1,7 +1,7 @@
-#include "Options.hpp"
+#include "Audio.hpp"
 
 //Options::OptionsResult Options::show(sf::RenderWindow& window)
-Menu::MenuResult Options::show(sf::RenderWindow & window)
+Menu::MenuResult Audio::show(sf::RenderWindow& window)
 {
 	// Load and texture from file.
 	mMenuT.loadFromFile("images/options.png");

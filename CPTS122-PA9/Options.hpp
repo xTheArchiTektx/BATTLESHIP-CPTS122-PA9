@@ -13,7 +13,7 @@ public:
 
 		// Member Functions
 	MenuResult show(sf::RenderWindow& window);
-
+	//OptionsResult show(sf::RenderWindow& window);
 };
 
 #endif // !OPTIONS

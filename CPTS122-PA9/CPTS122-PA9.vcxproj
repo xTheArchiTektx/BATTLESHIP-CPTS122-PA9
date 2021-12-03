@@ -151,7 +151,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Credits.cpp" />
+    <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="Controls.cpp" />
     <ClCompile Include="DisplayScreen.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="main.cpp" />
@@ -159,9 +160,11 @@
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
+    <ClCompile Include="Video.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Credits.hpp" />
+    <ClInclude Include="Audio.hpp" />
+    <ClInclude Include="Controls.hpp" />
     <ClInclude Include="DisplayScreen.hpp" />
     <ClInclude Include="Game.hpp" />
     <ClInclude Include="Menu.hpp" />
@@ -170,6 +173,7 @@
     <ClInclude Include="Ship.hpp" />
     <ClInclude Include="ShipList.hpp" />
     <ClInclude Include="SplashScreen.hpp" />
+    <ClInclude Include="Video.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

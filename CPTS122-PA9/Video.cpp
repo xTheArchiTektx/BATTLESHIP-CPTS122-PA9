@@ -1,9 +1,10 @@
-#include "Credits.hpp"
+#include "Video.hpp"
 
-Menu::MenuResult Credits::show(sf::RenderWindow& window)
+//Options::OptionsResult Options::show(sf::RenderWindow& window)
+Menu::MenuResult Video::show(sf::RenderWindow& window)
 {
 	// Load and texture from file.
-	mMenuT.loadFromFile("images/credits.png");
+	mMenuT.loadFromFile("images/options.png");
 
 	/** Setup clickable regions **/
 

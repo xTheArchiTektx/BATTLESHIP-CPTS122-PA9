@@ -50,6 +50,22 @@ void Game::gameLoop(void)
 		showCredits();
 		break;
 
+	case RULES:
+		showRules();
+		break;
+
+	case AUDIO:
+		showAudio();
+		break;
+
+	case VIDEO:
+		showVideo();
+		break;
+
+	case CONTROLS:
+		showControls();
+		break;
+
 	case PLAYING:
 	{
 		sf::Event currentEvent;
@@ -162,6 +178,8 @@ void Game::showOptions(void)
 {
 	Options optionsMenu;
 	Menu::MenuResult result = optionsMenu.show(mMainWindow);
+	//Options::optionsresult result = optionsMenu.show(mMainWindow);
+
 
 	// Set the game state.
 	switch (result)
@@ -170,13 +188,20 @@ void Game::showOptions(void)
 		mGameState = SHOWING_MENU;
 		break;
 
+	case Options::optionsresult::RULES:
+		mGameState = RULES;
+		break;
+
 	case Options::optionsresult::CONTROLS:
+		mGameState = CONTROLS;
 		break;
 
 	case Options::optionsresult::VIDEO:
+		mGameState = VIDEO;
 		break;
 		
 	case Options::optionsresult::AUDIO:
+		mGameState = AUDIO;
 		break;
 	}
 }
@@ -184,15 +209,70 @@ void Game::showOptions(void)
 void Game::showCredits(void)
 {
 	DisplayScreen credits;
-	
+	Text text;
+	Font font;
+	font.loadFromFile("fonts/BlackOpsOne-Regular.ttf");
+	text.setFont(font);
+	text.setString("Click any button to continue");
+	credits.setFont("fonts/BlackOpsOne-Regular.ttf");
+	credits.setTexture("images/credits");
+	credits.show(text, false, mMainWindow);
 
-	Credits creditsMenu;
-	Menu::MenuResult result = creditsMenu.show(mMainWindow);
+	mGameState = SHOWING_MENU;
+}
 
-	// Set the game state.
+void Game::showRules(void)
+{
+	DisplayScreen rules;
+	Text text;
+	Font font;
+	font.loadFromFile("fonts/BlackOpsOne-Regular.ttf");
+	text.setFont(font);
+	text.setString("Click any button to continue");
+	rules.setFont("fonts/BlackOpsOne-Regular.ttf");
+	rules.setTexture("images/rules");
+	rules.show(text, false, mMainWindow);
+
+	mGameState = SHOWING_MENU;
+}
+
+void Game::showAudio(void)
+{
+	Audio audioMenu;
+	Menu::MenuResult result = audioMenu.show(mMainWindow);
+	//Audio::AudioResult result = audioMenu.show(mMainWindow);
+
 	switch (result)
 	{
-	case Options::optionsresult::BACK:
+	case Audio::AudioResult::BACK:
+		mGameState = SHOWING_MENU;
+		break;
+	}
+}
+
+void Game::showVideo(void)
+{
+	Video videoMenu;
+	Menu::MenuResult result = videoMenu.show(mMainWindow);
+	//Video::VideoResult result = videoMenu.show(mMainWindow);
+
+	switch (result)
+	{
+	case Video::VideoResult::BACK:
+		mGameState = SHOWING_MENU;
+		break;
+	}
+}
+
+void Game::showControls(void)
+{
+	Controls controlsMenu;
+	Menu::MenuResult result = controlsMenu.show(mMainWindow);
+	//Controls::ControlsResult result = controlsMenu.show(mMainWindow);
+
+	switch (result)
+	{
+	case Controls::ControlsResult::BACK:
 		mGameState = SHOWING_MENU;
 		break;
 	}

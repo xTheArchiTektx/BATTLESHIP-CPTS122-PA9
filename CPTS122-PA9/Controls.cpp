@@ -1,10 +1,10 @@
-#include "Options.hpp"
+#include "Controls.hpp"
 
-//Options::OptionsResult Options::show(sf::RenderWindow& window)
-Menu::MenuResult Options::show(sf::RenderWindow & window)
+//controls::controlsResult controls::show(sf::RenderWindow& window)
+Menu::MenuResult Controls::show(sf::RenderWindow& window)
 {
 	// Load and texture from file.
-	mMenuT.loadFromFile("images/options.png");
+	mMenuT.loadFromFile("images/controls.png");
 
 	/** Setup clickable regions **/
 

@@ -14,12 +14,11 @@ void DisplayScreen::show(Text screenText, bool isSound, RenderWindow& window)
 
 void DisplayScreen::setFont(string font)
 {
-	Font newFont;
-	newFont.loadFromFile(font);
-
+	mScreenFont.loadFromFile(font);
 }
 
-void setTexture(string texture)
+void DisplayScreen::setTexture(string texture)
 {
-
+	mSpiteTexture.loadFromFile(texture);
+	mScreenBack.setTexture(mSpiteTexture);
 }
