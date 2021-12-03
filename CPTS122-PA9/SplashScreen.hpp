@@ -17,7 +17,6 @@
 #ifndef SPLASH_SCREEN
 #define SPLASH_SCREEN
 
-#include "PA9.hpp"
 #include "DisplayScreen.hpp"
 using sf::Sprite;
 using sf::Music;
@@ -74,7 +73,7 @@ public:
 * PostConditions: Updated Protected data members
 * Description: Loads the graphics for the display screen from the resource files
 **********************************************************************************************************************************************/
-	bool LoadGraphics(void)
+	bool loadGraphics(void)
 	{
 		Texture imageT;
 		Font screenFont;
