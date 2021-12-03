@@ -49,10 +49,12 @@ public:
 * PostConditions: Updated Protected data members
 * Description: Loads the graphics for the display screen from the resource files
 **********************************************************************************************************************************************/
-	bool loadGraphics(void);
+	virtual bool loadGraphics(void);
+protected:
+	Text mScreenText;
 private:
 	/** Inherits displayScreen; (RenderWindow, Spriteand Audio) **/
-	Text mScreenText;
+	//Text mScreenText;
 };
 
 #endif // !SPLASH_SCREEN

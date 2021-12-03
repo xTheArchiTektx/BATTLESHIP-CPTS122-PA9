@@ -1,5 +1,5 @@
 #include "Game.hpp"
-
+#include "GameBoardDisplay.hpp"
 /***********************************************\
 	Function Name: isExiting()
 	Date Created: 11/20/2021
@@ -82,6 +82,10 @@ void Game::gameLoop(void)
 			{
 
 			}
+		GameBoardDisplay gameBoard;
+		bool success = gameBoard.loadGraphics();
+		gameBoard.show(false, mMainWindow);
+
 		}
 
 		break;
