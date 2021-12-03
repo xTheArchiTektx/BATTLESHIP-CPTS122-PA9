@@ -82,7 +82,7 @@ void Game::start(void)
 		return;
 
 	// Create a window.
-	mMainWindow.create(sf::VideoMode(560, 560), "Pang!");
+	mMainWindow.create(sf::VideoMode(560, 560), "BATTLESHIP!");
 	mGameState = SHOWING_SPLASH;
 
 	// Run the gameloop.

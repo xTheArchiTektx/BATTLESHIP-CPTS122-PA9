@@ -1,11 +1,5 @@
 #pragma once
 #include "PA9.hpp"
-using sf::RenderWindow;
-using sf::Sprite;
-using sf::Texture;
-using sf::Font;
-using sf::Text;
-using sf::Music;
 
 /**********************************************************************************************************************************************
 * Class: DisplayScreen
@@ -30,6 +24,8 @@ class DisplayScreen
 {
 public:
 
+	DisplayScreen(void);
+
 /**********************************************************************************************************************************************
 * Function: show()
 * Created by: Zachary Garoutte
@@ -51,7 +47,9 @@ public:
 		}
 	}
 protected:
-	sf::RenderWindow &displayScreen; //used to store the application window (RenderWindow displayScreen)
+	Sprite screenBack;
+	Music audio;
+	sf::RenderWindow displayScreen; //used to store the application window (RenderWindow displayScreen)
 private:
 
 };

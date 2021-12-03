@@ -26,7 +26,7 @@ using sf::Text;
 class SplashScreen : public DisplayScreen
 {
 public:
-	SplashScreen();
+	SplashScreen() : DisplayScreen() {}
 	//Inherits show();
 
 /**********************************************************************************************************************************************
@@ -114,9 +114,7 @@ public:
 		return success;
 	}
 protected:
-	//Inherits displayScreen;(RenderWindow&)
-	Sprite screenBack;
-	Music audio;
+	//Inherits displayScreen;(RenderWindow, Sprite and Audio)
 	Text screenText;
 private:
 	//None

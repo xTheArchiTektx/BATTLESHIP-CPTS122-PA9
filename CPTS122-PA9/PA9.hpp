@@ -13,3 +13,10 @@
 #include <iostream>
 #include <Windows.h>
 #include <list>
+
+using sf::RenderWindow;
+using sf::Sprite;
+using sf::Texture;
+using sf::Font;
+using sf::Text;
+using sf::Music;
