@@ -109,7 +109,7 @@ void Game::showSplashScreen(void)
 {
 	SplashScreen splashScreen;
 	splashScreen.loadGraphics();
-	splashScreen.show(true);
+	splashScreen.show(true, mMainWindow);
 	mGameState = SHOWING_MENU;
 }
 

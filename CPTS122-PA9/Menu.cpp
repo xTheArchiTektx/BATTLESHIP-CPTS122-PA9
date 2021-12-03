@@ -15,7 +15,7 @@
 Menu::MenuResult Menu::show(sf::RenderWindow& window)
 {
 	// Load and texture from file.
-	sf::Texture texture;
+	Texture texture;
 	texture.loadFromFile("images/mainmenu.png");
 
 	// Setup clickable regions.

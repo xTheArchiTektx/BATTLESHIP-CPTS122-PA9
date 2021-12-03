@@ -1,15 +1,15 @@
 /*******************************************************************************\
-|	Class: SplashScreen
-	Created by: Nicholas Bellinger, and Zach Garoutte							|
+|	Class: SplashScreen															|
+|	Created by: Nicholas Bellinger, and Zach Garoutte							|
 |	Studio: N/A																	|
 |	Date Created: 11/20/2021													|
 |	Date Last Modified: 12/2/2021												|
-|	Inhertiance: Public DisplayScreen
-|	Public: Inherted show() function (See declaration in DisplayScreen.hpp);
-|			LoadSplashS() (See declaration below)
-|	Protected: Inherted RenderWindow; Sprite screenBack; Music audio;
-|				Text Screen Text
-|	Private: None
+|	Inhertiance: Public DisplayScreen											|
+|	Public: Inherted show() function (See declaration in DisplayScreen.hpp);	|
+|			LoadSplashS() (See declaration below)								|
+|	Protected: Inherted RenderWindow; Sprite screenBack; Music audio;			|
+|				Text Screen Text												|
+|	Private: None																|
 |	Description: This is the SplashScreen class. It contains the				|
 |		inherited member funciton show which displays the splash screen.		|
 \*******************************************************************************/
@@ -18,16 +18,12 @@
 #define SPLASH_SCREEN
 
 #include "DisplayScreen.hpp"
-using sf::Sprite;
-using sf::Music;
-using sf::Font;
-using sf::Text;
 
 class SplashScreen : public DisplayScreen
 {
 public:
 	SplashScreen() : DisplayScreen() {}
-	//Inherits show();
+	/** Inherits show(); **/
 
 /**********************************************************************************************************************************************
 * Function: show()
@@ -40,22 +36,25 @@ public:
 * PostConditions: Gamescreen Displayed
 * Description: Displays the inputed graphic properties to the Application Render Window
 **********************************************************************************************************************************************/
-	virtual void show(bool isSound)
+	void show(bool isSound, RenderWindow& window)
 	{
-		displayScreen.draw(this->screenBack);
-		displayScreen.draw(this->screenText);
+		window.draw(this->mScreenBack);
+		window.draw(this->mScreenText);
+		window.display();
+
 		if (isSound)
 		{
-			this->audio.play();
+			this->mAudio.play();
 		}
+
 		sf::Event event;
 		while (true)
 		{
-			while (displayScreen.pollEvent(event))
+			while (window.pollEvent(event))
 			{
 				if (event.type == sf::Event::EventType::KeyPressed || event.type == sf::Event::EventType::MouseButtonPressed || event.type == sf::Event::EventType::Closed)
 				{
-					this->audio.stop();
+					this->mAudio.stop();
 					return;
 				}
 			}
@@ -75,49 +74,46 @@ public:
 **********************************************************************************************************************************************/
 	bool loadGraphics(void)
 	{
-		Texture imageT;
-		Font screenFont;
-		bool success = false;
-		if (!imageT.loadFromFile("images/SplashScreen.png"))
+		bool success = true;
+
+		if (!mSpiteTexture.loadFromFile("images/SplashScreen.png"))
 		{
 			success = false;
 		}
 		else
 		{
-			screenBack.setTexture(imageT);
-			success = true;
+			mScreenBack.setTexture(mSpiteTexture);
 		}
-		if (!screenFont.loadFromFile("fonts/BlackOpsOne-Regular.ttf"))
+
+		if (!mScreenFont.loadFromFile("fonts/BlackOpsOne-Regular.ttf"))
 		{
 			success = false;
 		}
 		else
 		{
-			//Font successful Load text next:
-			screenText.setFont(screenFont);
-			screenText.setFillColor(sf::Color::White);
-			screenText.setCharacterSize(20);
-			screenText.setString("Press Any Key to Continue...");
-			screenText.setPosition(sf::Vector2f(200, 450));
-			success = true;
+				//Font successful Load text next:
+			mScreenText.setFont(mScreenFont);
+			mScreenText.setFillColor(sf::Color::White);
+			mScreenText.setCharacterSize(20);
+			mScreenText.setString("Press Any Key to Continue...");
+			mScreenText.setPosition(sf::Vector2f(200, 450));
 		}
-		if (!audio.openFromFile("soundtrack/SplashScreen.ogg"))
+
+		if (!mAudio.openFromFile("soundtrack/SplashScreen.ogg"))
 		{
 			success = false;
 		}
 		else
 		{
-			audio.setVolume(15.f);
-			audio.setLoop(true);
-			success = true;
+			mAudio.setVolume(15.f);
+			mAudio.setLoop(true);
 		}
+
 		return success;
 	}
-protected:
-	//Inherits displayScreen;(RenderWindow, Sprite and Audio)
-	Text screenText;
 private:
-	//None
+	/** Inherits displayScreen; (RenderWindow, Spriteand Audio) **/
+	Text mScreenText;
 };
 
 #endif // !SPLASH_SCREEN

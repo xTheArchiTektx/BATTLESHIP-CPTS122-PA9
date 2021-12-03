@@ -1,4 +1,6 @@
-#pragma once
+#ifndef DISPLAY_SCREEN
+#define DISPLAY_SCREEN
+
 #include "PA9.hpp"
 
 /**********************************************************************************************************************************************
@@ -23,8 +25,9 @@
 class DisplayScreen
 {
 public:
-
 	DisplayScreen(void);
+
+	RenderWindow getWindow(void);
 
 /**********************************************************************************************************************************************
 * Function: show()
@@ -37,19 +40,21 @@ public:
 * PostConditions: Gamescreen Displayed
 * Description: Displays the inputed graphic properties to the Application Render Window
 **********************************************************************************************************************************************/
-	virtual void show(Sprite screenGraphics, Text screenText, bool isSound, Music displayAudio)
+	virtual void show(Text screenText, bool isSound, RenderWindow& window)
 	{
-		displayScreen.draw(screenGraphics);
-		displayScreen.draw(screenText);
+		window.draw(mScreenBack);
+		window.draw(screenText);
 		if (isSound)
 		{
-			displayAudio.play();
+			mAudio.play();
 		}
 	}
 protected:
-	Sprite screenBack;
-	Music audio;
-	sf::RenderWindow displayScreen; //used to store the application window (RenderWindow displayScreen)
-private:
-
+	Font mScreenFont;
+	Texture mSpiteTexture;
+	Sprite mScreenBack;
+	Music mAudio;
+	//RenderWindow mDisplayScreen; //used to store the application window (RenderWindow displayScreen)
 };
+
+#endif // !DISPLAY_SCREEN
