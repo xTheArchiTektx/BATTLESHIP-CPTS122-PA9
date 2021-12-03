@@ -40,15 +40,8 @@ public:
 * PostConditions: Gamescreen Displayed
 * Description: Displays the inputed graphic properties to the Application Render Window
 **********************************************************************************************************************************************/
-	virtual void show(Text screenText, bool isSound, RenderWindow& window)
-	{
-		window.draw(mScreenBack);
-		window.draw(screenText);
-		if (isSound)
-		{
-			mAudio.play();
-		}
-	}
+	virtual void show(Text screenText, bool isSound, RenderWindow& window);
+
 protected:
 	Font mScreenFont;
 	Texture mSpiteTexture;

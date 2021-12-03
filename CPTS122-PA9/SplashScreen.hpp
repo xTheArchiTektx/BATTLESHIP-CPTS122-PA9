@@ -36,30 +36,7 @@ public:
 * PostConditions: Gamescreen Displayed
 * Description: Displays the inputed graphic properties to the Application Render Window
 **********************************************************************************************************************************************/
-	void show(bool isSound, RenderWindow& window)
-	{
-		window.draw(this->mScreenBack);
-		window.draw(this->mScreenText);
-		window.display();
-
-		if (isSound)
-		{
-			this->mAudio.play();
-		}
-
-		sf::Event event;
-		while (true)
-		{
-			while (window.pollEvent(event))
-			{
-				if (event.type == sf::Event::EventType::KeyPressed || event.type == sf::Event::EventType::MouseButtonPressed || event.type == sf::Event::EventType::Closed)
-				{
-					this->mAudio.stop();
-					return;
-				}
-			}
-		}
-	}
+	void show(bool isSound, RenderWindow& window);
 
 /**********************************************************************************************************************************************
 * Function: LoadGraphics()
@@ -72,45 +49,7 @@ public:
 * PostConditions: Updated Protected data members
 * Description: Loads the graphics for the display screen from the resource files
 **********************************************************************************************************************************************/
-	bool loadGraphics(void)
-	{
-		bool success = true;
-
-		if (!mSpiteTexture.loadFromFile("images/SplashScreen.png"))
-		{
-			success = false;
-		}
-		else
-		{
-			mScreenBack.setTexture(mSpiteTexture);
-		}
-
-		if (!mScreenFont.loadFromFile("fonts/BlackOpsOne-Regular.ttf"))
-		{
-			success = false;
-		}
-		else
-		{
-				//Font successful Load text next:
-			mScreenText.setFont(mScreenFont);
-			mScreenText.setFillColor(sf::Color::White);
-			mScreenText.setCharacterSize(20);
-			mScreenText.setString("Press Any Key to Continue...");
-			mScreenText.setPosition(sf::Vector2f(200, 450));
-		}
-
-		if (!mAudio.openFromFile("soundtrack/SplashScreen.ogg"))
-		{
-			success = false;
-		}
-		else
-		{
-			mAudio.setVolume(15.f);
-			mAudio.setLoop(true);
-		}
-
-		return success;
-	}
+	bool loadGraphics(void);
 private:
 	/** Inherits displayScreen; (RenderWindow, Spriteand Audio) **/
 	Text mScreenText;
