@@ -14,35 +14,52 @@
 \***********************************************/
 Menu::MenuResult Menu::show(sf::RenderWindow& window)
 {
-	// Load and texture from file.
-	Texture texture;
-	texture.loadFromFile("images/mainmenu.png");
+		// Load and texture from file.
+	mMenuT.loadFromFile("images/mainmenu.png");
 
-	// Setup clickable regions.
+	/** Setup clickable regions **/
 
-	// Play menu item coordinates.
+		// Play menu item coordinates.
 	MenuItem playButton;
-	playButton.mRect.top = 145;
-	playButton.mRect.height = 380 - 145; // bottom - top
-	playButton.mRect.left = 0;
-	playButton.mRect.width = 1023 - 0; // right - left
+	playButton.mRect.top = 160;
+	playButton.mRect.height = 60; // bottom - top
+	playButton.mRect.left = 275;
+	playButton.mRect.width = 225; // right - left
 	playButton.action = PLAY;
 
-	// Exit menu item coordinates.
+		// Option menu item coordinates.
+	MenuItem optionsButton;
+	optionsButton.mRect.top = 240;
+	optionsButton.mRect.height = 60; // bottom - top
+	optionsButton.mRect.left = 275;
+	optionsButton.mRect.width = 225; // right - left
+	optionsButton.action = EXIT;
+
+		// Credits menu item coordinates.
+	MenuItem creditsButton;
+	creditsButton.mRect.top = 320;
+	creditsButton.mRect.height = 60; // bottom - top
+	creditsButton.mRect.left = 275;
+	creditsButton.mRect.width = 225; // right - left
+	creditsButton.action = EXIT;
+
+		// Exit menu item coordinates.
 	MenuItem exitButton;
-	exitButton.mRect.top = 383;
-	exitButton.mRect.height = 560 - 383; // bottom - top
-	exitButton.mRect.left = 0;
-	exitButton.mRect.width = 1023 - 0; // right - left
+	exitButton.mRect.top = 400;
+	exitButton.mRect.height = 60; // bottom - top
+	exitButton.mRect.left = 275;
+	exitButton.mRect.width = 225; // right - left
 	exitButton.action = EXIT;
 
-	// Add the buttons to the list.
+		// Add the buttons to the list.
 	mMenuItems.push_back(playButton);
+	mMenuItems.push_back(optionsButton);
+	mMenuItems.push_back(creditsButton);
 	mMenuItems.push_back(exitButton);
 
-	// Display the texture to the screen.
-	sf::Sprite sprite(texture);
-	window.draw(sprite);
+		// Display the texture to the screen.
+	mMenuScreen.setTexture(mMenuT);
+	window.draw(mMenuScreen);
 	window.display();
 
 	return GetMenuResponse(window);
@@ -64,7 +81,7 @@ Menu::MenuResult Menu::HandleClick(int x, int y)
 	std::list<MenuItem>::iterator it;
 	for (it = mMenuItems.begin(); it != mMenuItems.end(); it++)
 	{
-		// Check if mouse click was within the button's box.
+			// Check if mouse click was within the button's box.
 		sf::Rect<int> menuItemRect = (*it).mRect;
 		if (menuItemRect.height + menuItemRect.top > y && menuItemRect.top < y && menuItemRect.left < x && menuItemRect.left + menuItemRect.width > x)
 		{
@@ -94,20 +111,15 @@ Menu::MenuResult Menu::GetMenuResponse(sf::RenderWindow& window)
 	{
 		while (window.pollEvent(menuEvent))
 		{
-			// Get the event type.
+				// Get the event type.
 			if (menuEvent.type == sf::Event::EventType::MouseButtonPressed) // handles click
 			{
 				return HandleClick(menuEvent.mouseButton.x, menuEvent.mouseButton.y);
 			}
 			else if (menuEvent.type == sf::Event::EventType::Resized)
 			{
-				// Load and texture from file.
-				Texture texture;
-				texture.loadFromFile("images/mainmenu.png");
-
-				// Display the texture to the screen.
-				sf::Sprite sprite(texture);
-				window.draw(sprite);
+					// Display the texture to the screen.
+				window.draw(mMenuScreen);
 				window.display();
 			}
 

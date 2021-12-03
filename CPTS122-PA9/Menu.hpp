@@ -29,6 +29,8 @@ public:
 private:
 	// Data Members
 	std::list<MenuItem> mMenuItems;
+	Texture mMenuT;
+	Sprite mMenuScreen;
 
 	// Member Functions
 	MenuResult GetMenuResponse(sf::RenderWindow& window);
@@ -36,7 +38,7 @@ private:
 
 public:
 	// Member Functions
-	MenuResult show(sf::RenderWindow& window);
+	virtual MenuResult show(sf::RenderWindow& window);
 
 };
 
