@@ -33,6 +33,12 @@ void SplashScreen::show(bool isSound, RenderWindow& window)
 				this->mAudio.stop();
 				return;
 			}
+			else if (event.type == sf::Event::EventType::Resized)
+			{
+				window.draw(this->mScreenBack);
+				window.draw(this->mScreenText);
+				window.display();
+			}
 		}
 	}
 	}

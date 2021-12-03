@@ -99,6 +99,17 @@ Menu::MenuResult Menu::GetMenuResponse(sf::RenderWindow& window)
 			{
 				return HandleClick(menuEvent.mouseButton.x, menuEvent.mouseButton.y);
 			}
+			else if (menuEvent.type == sf::Event::EventType::Resized)
+			{
+				// Load and texture from file.
+				Texture texture;
+				texture.loadFromFile("images/mainmenu.png");
+
+				// Display the texture to the screen.
+				sf::Sprite sprite(texture);
+				window.draw(sprite);
+				window.display();
+			}
 
 			if (menuEvent.type == sf::Event::Closed) // handles close
 			{
