@@ -68,7 +68,7 @@ void Game::gameLoop(void)
 		sf::Event currentEvent;
 		while (mMainWindow.pollEvent(currentEvent))
 		{
-			Ship aircraftCarrier, battleship, cruiser, submarine, destroyer;
+			Ship aircraftCarrier, battleship, patrolBoat, submarine, destroyer;
 
 			if (mPlayers == 1)
 			{
@@ -77,9 +77,9 @@ void Game::gameLoop(void)
 
 				ships.push_back(aircraftCarrier);
 				ships.push_back(battleship);
-				ships.push_back(cruiser);
-				ships.push_back(submarine);
 				ships.push_back(destroyer);
+				ships.push_back(submarine);
+				ships.push_back(patrolBoat);
 				
 				ShipsMenu shipSelection;
 				Menu::MenuResult result = shipSelection.show(mMainWindow);
@@ -91,15 +91,15 @@ void Game::gameLoop(void)
 
 				p1_ships.push_back(aircraftCarrier);
 				p1_ships.push_back(battleship);
-				p1_ships.push_back(cruiser);
-				p1_ships.push_back(submarine);
 				p1_ships.push_back(destroyer);
+				p1_ships.push_back(submarine);
+				p1_ships.push_back(patrolBoat);
 
 				p2_ships.push_back(aircraftCarrier);
 				p2_ships.push_back(battleship);
-				p2_ships.push_back(cruiser);
-				p2_ships.push_back(submarine);
 				p2_ships.push_back(destroyer);
+				p2_ships.push_back(submarine);
+				p2_ships.push_back(patrolBoat);
 			}
 
 			if (currentEvent.type == sf::Event::Closed)

@@ -31,12 +31,12 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 	submarine.action = SUB;
 
 		// Cruiser item coordinates.
-	MenuItem cruiser;
-	cruiser.mRect.top = 400;
-	cruiser.mRect.height = 60; // bottom - top
-	cruiser.mRect.left = 275;
-	cruiser.mRect.width = 225; // right - left
-	cruiser.action = CRUISER;
+	MenuItem patrolBoat;
+	patrolBoat.mRect.top = 400;
+	patrolBoat.mRect.height = 60; // bottom - top
+	patrolBoat.mRect.left = 275;
+	patrolBoat.mRect.width = 225; // right - left
+	patrolBoat.action = PATROL_BOAT;
 
 	// Destroyer item coordinates.
 	MenuItem destroyer;
@@ -47,7 +47,7 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 	destroyer.action = DESTROYER;
 
 		// Add the buttons to the list.
-	mMenuItems.push_back(cruiser);
+	mMenuItems.push_back(patrolBoat);
 	mMenuItems.push_back(battleship);
 	mMenuItems.push_back(submarine);
 	mMenuItems.push_back(carrier);
