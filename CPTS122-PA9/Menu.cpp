@@ -12,7 +12,7 @@
 		menu screen to the window and gets a
 		response from the user.
 \***********************************************/
-Menu::MenuResult Menu::show(sf::RenderWindow& window)
+Menu::MenuResult Menu::show(sf::RenderWindow& window, int& playerCount)
 {
 		// Load and texture from file.
 	mMenuT.loadFromFile("images/mainmenu.png");
@@ -62,7 +62,47 @@ Menu::MenuResult Menu::show(sf::RenderWindow& window)
 	window.draw(mMenuScreen);
 	window.display();
 
-	return GetMenuResponse(window);
+	MenuResult result = GetMenuResponse(window);
+
+	if (result == PLAY)
+	{
+		loadPlayerButtons(window);
+
+		MenuItem p1Button;
+		p1Button.mRect.top = 190;
+		p1Button.mRect.height = 60; // bottom - top
+		p1Button.mRect.left = 25;
+		p1Button.mRect.width = 225; // right - left
+		p1Button.action = PLAYER_1;
+
+		MenuItem p2Button;
+		p2Button.mRect.top = 270;
+		p2Button.mRect.height = 60; // bottom - top
+		p2Button.mRect.left = 25;
+		p2Button.mRect.width = 225; // right - left
+		p2Button.action = PLAYER_2;
+
+		mMenuItems.clear();
+		mMenuItems.push_back(p1Button);
+		mMenuItems.push_back(p2Button);
+
+		MenuResult player = NOTHING;
+		while (player == NOTHING)
+		{
+			player = GetMenuResponse(window);
+
+			if (player == PLAYER_1)
+			{
+				playerCount = 1;
+			}
+			else if (player == PLAYER_2)
+			{
+				playerCount = 2;
+			}
+		}
+	}
+
+	return result;
 }
 
 /***********************************************\
@@ -129,4 +169,23 @@ Menu::MenuResult Menu::GetMenuResponse(sf::RenderWindow& window)
 			}
 		}
 	}
+}
+
+void Menu::loadPlayerButtons(RenderWindow& window)
+{
+	Texture t1, t2;
+
+	t1.loadFromFile("images/1-Player.png");
+	t2.loadFromFile("images/2-Player.png");
+
+	Sprite b1(t1), b2(t2);
+
+	b1.setPosition(sf::Vector2f(25, 190));
+	b2.setPosition(sf::Vector2f(25, 270));
+
+	window.draw(mMenuScreen);
+	window.draw(b1);
+	window.draw(b2);
+
+	window.display();
 }

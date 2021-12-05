@@ -1,6 +1,5 @@
 #pragma once
 #include "PA9.hpp"
-#include "DisplayScreen.hpp"
 #include "SplashScreen.hpp"
 
 class GameBoardDisplay : public SplashScreen

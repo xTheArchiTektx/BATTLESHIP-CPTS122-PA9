@@ -10,24 +10,29 @@
 
 #include "Options.hpp"
 #include "Audio.hpp"
-#include "Video.hpp"
 #include "Controls.hpp"
 #include "SplashScreen.hpp"
+#include "Ship.hpp"
+#include "ShipsMenu.hpp"
 
 class Game
 {
 private:
-	// Data Types
+		// Data Types
 	typedef enum gamestate
 	{
 		UNINITIALIZED, SHOWING_SPLASH, PAUSED, SHOWING_MENU, PLAYING, EXITING, CREDIT, OPTION, RULES, AUDIO, VIDEO, CONTROLS
 	}GameState;
 
-	// Data Members
+		// Data Members
 	static GameState mGameState;
 	static sf::RenderWindow mMainWindow;
+	static int mPlayers;
 
-	// Member Functions
+		// Setters
+	static int setPlayers(void);
+
+		// Member Functions
 	static bool isExiting(void);
 	static void gameLoop(void);
 
@@ -37,11 +42,10 @@ private:
 	static void showCredits(void);
 	static void showRules(void);
 	static void showAudio(void);
-	static void showVideo(void);
 	static void showControls(void);
 
 public:
-	// Member Functons
+		// Member Functons
 	static void start(void);
 
 };

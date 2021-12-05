@@ -1,6 +1,5 @@
 #include "Options.hpp"
 
-//Options::OptionsResult Options::show(sf::RenderWindow& window)
 Menu::MenuResult Options::show(sf::RenderWindow & window)
 {
 	// Load and texture from file.

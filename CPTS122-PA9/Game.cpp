@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "GameBoardDisplay.hpp"
+
 /***********************************************\
 	Function Name: isExiting()
 	Date Created: 11/20/2021
@@ -58,10 +59,6 @@ void Game::gameLoop(void)
 		showAudio();
 		break;
 
-	case VIDEO:
-		showVideo();
-		break;
-
 	case CONTROLS:
 		showControls();
 		break;
@@ -71,21 +68,44 @@ void Game::gameLoop(void)
 		sf::Event currentEvent;
 		while (mMainWindow.pollEvent(currentEvent))
 		{
-			mMainWindow.clear(sf::Color(255, 0, 0));
-			mMainWindow.display();
+			Ship aircraftCarrier, battleship, cruiser, submarine, destroyer;
+
+			if (mPlayers == 1)
+			{
+					// Initialize ships.
+				std::list<Ship> ships;
+
+				ships.push_back(aircraftCarrier);
+				ships.push_back(battleship);
+				ships.push_back(cruiser);
+				ships.push_back(submarine);
+				ships.push_back(destroyer);
+				
+				ShipsMenu shipSelection;
+				Menu::MenuResult result = shipSelection.show(mMainWindow);
+			}
+			else if (mPlayers == 2)
+			{
+					// Initialize ships.
+				std::list<Ship> p1_ships, p2_ships;
+
+				p1_ships.push_back(aircraftCarrier);
+				p1_ships.push_back(battleship);
+				p1_ships.push_back(cruiser);
+				p1_ships.push_back(submarine);
+				p1_ships.push_back(destroyer);
+
+				p2_ships.push_back(aircraftCarrier);
+				p2_ships.push_back(battleship);
+				p2_ships.push_back(cruiser);
+				p2_ships.push_back(submarine);
+				p2_ships.push_back(destroyer);
+			}
 
 			if (currentEvent.type == sf::Event::Closed)
 			{
 				mGameState = EXITING;
 			}
-			else if (currentEvent.type == sf::Event::Resized)
-			{
-
-			}
-		GameBoardDisplay gameBoard;
-		bool success = gameBoard.loadGraphics();
-		gameBoard.show(false, mMainWindow);
-
 		}
 
 		break;
@@ -157,7 +177,7 @@ void Game::showMenu(void)
 {
 	// Display the menu.
 	Menu mainMenu;
-	Menu::MenuResult result = mainMenu.show(mMainWindow);
+	Menu::MenuResult result = mainMenu.show(mMainWindow, mPlayers);
 
 	// Set the game state.
 	switch (result)
@@ -188,23 +208,19 @@ void Game::showOptions(void)
 	// Set the game state.
 	switch (result)
 	{
-	case Options::optionsresult::BACK:
+	case Menu::MenuResult::BACK:
 		mGameState = SHOWING_MENU;
 		break;
 
-	case Options::optionsresult::RULES:
+	case Menu::MenuResult::RULES:
 		mGameState = RULES;
 		break;
 
-	case Options::optionsresult::CONTROLS:
+	case Menu::MenuResult::CONTROLS:
 		mGameState = CONTROLS;
 		break;
-
-	case Options::optionsresult::VIDEO:
-		mGameState = VIDEO;
-		break;
 		
-	case Options::optionsresult::AUDIO:
+	case Menu::MenuResult::AUDIO:
 		mGameState = AUDIO;
 		break;
 	}
@@ -248,21 +264,7 @@ void Game::showAudio(void)
 
 	switch (result)
 	{
-	case Audio::AudioResult::BACK:
-		mGameState = SHOWING_MENU;
-		break;
-	}
-}
-
-void Game::showVideo(void)
-{
-	Video videoMenu;
-	Menu::MenuResult result = videoMenu.show(mMainWindow);
-	//Video::VideoResult result = videoMenu.show(mMainWindow);
-
-	switch (result)
-	{
-	case Video::VideoResult::BACK:
+	case Menu::MenuResult::BACK:
 		mGameState = SHOWING_MENU;
 		break;
 	}
@@ -276,7 +278,7 @@ void Game::showControls(void)
 
 	switch (result)
 	{
-	case Controls::ControlsResult::BACK:
+	case Menu::MenuResult::BACK:
 		mGameState = SHOWING_MENU;
 		break;
 	}
@@ -285,3 +287,4 @@ void Game::showControls(void)
 // Static Variables
 Game::GameState Game::mGameState = UNINITIALIZED;
 sf::RenderWindow Game::mMainWindow;
+int Game::mPlayers = 1;

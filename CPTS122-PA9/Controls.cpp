@@ -1,6 +1,5 @@
 #include "Controls.hpp"
 
-//controls::controlsResult controls::show(sf::RenderWindow& window)
 Menu::MenuResult Controls::show(sf::RenderWindow& window)
 {
 	// Load and texture from file.
