@@ -174,7 +174,6 @@
     <ClInclude Include="PA9.hpp" />
     <ClInclude Include="Ship.hpp" />
     <ClInclude Include="shipCordList.hpp" />
-    <ClInclude Include="ShipList.hpp" />
     <ClInclude Include="ShipsMenu.hpp" />
     <ClInclude Include="SplashScreen.hpp" />
   </ItemGroup>
