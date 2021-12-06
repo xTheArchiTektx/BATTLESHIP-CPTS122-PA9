@@ -9,8 +9,8 @@ public:
 	//destructor
 
 	//setters
-	int getLength(void);
-	int getHits(void);
+	int getLength(void) { return length; };
+	int getHits(void) { return numHits; };
 	//getters
 
 	//member functions
@@ -25,7 +25,7 @@ private:
 	std::string shipName;
 	int length;
 	std::list<int> shipCoordinates;
-
+	int numHits;
 
 
 
