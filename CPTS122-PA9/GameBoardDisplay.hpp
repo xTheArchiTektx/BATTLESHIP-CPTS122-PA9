@@ -8,7 +8,8 @@ public:
 	//inherits show()
 	virtual bool loadGraphics(void);
 protected:
-	//None
+	
+
 private:
 	//Inherits displayScreen
 	//Inherits displayText

@@ -21,7 +21,7 @@ private:
 		// Data Types
 	typedef enum gamestate
 	{
-		UNINITIALIZED, SHOWING_SPLASH, PAUSED, SHOWING_MENU, PLAYING, EXITING, CREDIT, OPTION, RULES, AUDIO, VIDEO, CONTROLS
+		UNINITIALIZED, SHOWING_SPLASH, PAUSED, SHOWING_MENU, PLAYER1_BOARD, PLAYER2_BOARD, EXITING, CREDIT, OPTION, RULES, AUDIO, VIDEO, CONTROLS, SHIP_MENU,
 	}GameState;
 
 		// Data Members
@@ -43,6 +43,7 @@ private:
 	static void showRules(void);
 	static void showAudio(void);
 	static void showControls(void);
+	static Texture showShipsMenu(int shipCount, int player);
 
 public:
 		// Member Functons

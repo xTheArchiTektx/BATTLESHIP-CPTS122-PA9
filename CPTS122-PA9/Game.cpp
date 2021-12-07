@@ -33,6 +33,9 @@ bool Game::isExiting(void)
 \***********************************************/
 void Game::gameLoop(void)
 {
+	int shipCount = 0, player = 1;
+	Texture shipT;
+
 	switch (mGameState)
 	{
 	case SHOWING_SPLASH:
@@ -63,56 +66,62 @@ void Game::gameLoop(void)
 		showControls();
 		break;
 
-	case PLAYING:
+	case PLAYER1_BOARD:
 	{
 		sf::Event currentEvent;
 		while (mMainWindow.pollEvent(currentEvent))
 		{
-			Ship aircraftCarrier(5, 0, 28, 140, "Carrier", sf::Color::Red);
-			Ship battleship(4, 0, 28, 112, "BattleShip", Color::Red);
-			Ship patrolBoat(2, 0, 28, 56, "Patrol Boat", Color::Red);
-			Ship submarine(3, 0, 28, 84, "Submarine", Color::Red);
-			Ship destroyer(3, 0, 28, 84, "Destroyer", Color::Red);
-
 			if (mPlayers == 1)
 			{
-					// Initialize ships.
-				std::list<Ship> ships;
+				GameBoardDisplay gameBoard_p1, gameBoard_cpu;
+				if (shipCount < 5)
+				{
+					// Place Ships
+					gameBoard_p1.loadGraphics();
+					gameBoard_p1.show(true, mMainWindow);
 
-				ships.push_back(aircraftCarrier);
-				ships.push_back(battleship);
-				ships.push_back(destroyer);
-				ships.push_back(submarine);
-				ships.push_back(patrolBoat);
-				
-				ShipsMenu shipSelection;
-				Menu::MenuResult result = shipSelection.show(mMainWindow);
+					system("pause");
+				}
+				else
+				{
+					// Initialize ships.
+					Ship aircraftCarrier(5, 0, 28, 140, "Carrier", Color::Red);
+					Ship battleship(4, 0, 28, 112, "BattleShip", Color::Red);
+					Ship patrolBoat(2, 0, 28, 56, "Patrol Boat", Color::Red);
+					Ship submarine(3, 0, 28, 84, "Submarine", Color::Red);
+					Ship destroyer(3, 0, 28, 84, "Destroyer", Color::Red);
+					std::list<Ship> ships;
+
+					ships.push_back(aircraftCarrier);
+					ships.push_back(battleship);
+					ships.push_back(destroyer);
+					ships.push_back(submarine);
+					ships.push_back(patrolBoat);
+				}
+
+			if (currentEvent.type == sf::Event::MouseButtonPressed)
+			{
+
+			}
+			else if (currentEvent.type == sf::Event::Closed)
+			{
+				mGameState = EXITING;
+			}
 			}
 			else if (mPlayers == 2)
 			{
-					// Initialize ships.
-				std::list<Ship> p1_ships, p2_ships;
-
-				p1_ships.push_back(aircraftCarrier);
-				p1_ships.push_back(battleship);
-				p1_ships.push_back(destroyer);
-				p1_ships.push_back(submarine);
-				p1_ships.push_back(patrolBoat);
-
-				p2_ships.push_back(aircraftCarrier);
-				p2_ships.push_back(battleship);
-				p2_ships.push_back(destroyer);
-				p2_ships.push_back(submarine);
-				p2_ships.push_back(patrolBoat);
-			}
-
-			if (currentEvent.type == sf::Event::Closed)
-			{
-				mGameState = EXITING;
+				
 			}
 		}
 
 		break;
+
+		case PLAYER2_BOARD:
+			break;
+
+		case SHIP_MENU:
+			shipT = showShipsMenu(shipCount, player);
+			break;
 	}
 	}
 }
@@ -191,7 +200,7 @@ void Game::showMenu(void)
 		break;
 
 	case Menu::PLAY:
-		mGameState = PLAYING;
+		mGameState = SHIP_MENU;
 		break;
 
 	case Menu::OPTION:
@@ -278,7 +287,6 @@ void Game::showControls(void)
 {
 	Controls controlsMenu;
 	Menu::MenuResult result = controlsMenu.show(mMainWindow);
-	//Controls::ControlsResult result = controlsMenu.show(mMainWindow);
 
 	switch (result)
 	{
@@ -286,6 +294,64 @@ void Game::showControls(void)
 		mGameState = SHOWING_MENU;
 		break;
 	}
+}
+
+Texture Game::showShipsMenu(int shipCount, int player)
+{
+	ShipsMenu shipSelection;
+	Menu::MenuResult result = Menu::NOTHING;
+	Menu::MenuResult ship = Menu::NOTHING;
+	Texture shipT;
+
+	result = shipSelection.show(mMainWindow);
+
+	switch (result)
+	{
+		case Menu::CARRIER:
+			shipSelection.displayCarrier(mMainWindow);
+			shipT.loadFromFile("images/AircraftCarrier.png");
+			break;
+
+		case Menu::BATTLESHIP:
+			shipSelection.displayBattleship(mMainWindow);
+			shipT.loadFromFile("images/Battleship.png");
+			break;
+
+		case Menu::DESTROYER:
+			shipSelection.displayDestroyer(mMainWindow);
+			shipT.loadFromFile("images/Destroyer.png");
+			break;
+
+		case Menu::SUB:
+			shipSelection.displaySubmarine(mMainWindow);
+			shipT.loadFromFile("images/Submarine.png");
+			break;
+
+		case Menu::PATROL_BOAT:
+			shipSelection.displayPatrolBoat(mMainWindow);
+			shipT.loadFromFile("images/PatrolBoat.png");
+			break;
+
+		case Menu::CONFIRM:
+			if (ship == Menu::NOTHING)
+			{
+				result = Menu::NOTHING;
+			}
+			else
+			{
+				if (player == 2)
+				{
+					mGameState = PLAYER2_BOARD;
+				}
+				else
+				{
+					mGameState = PLAYER1_BOARD;
+				}
+			}
+			break;
+	}
+
+	return shipT;
 }
 
 // Static Variables
