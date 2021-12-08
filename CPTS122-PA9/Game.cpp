@@ -330,27 +330,22 @@ Texture Game::showShipsMenu(int shipCount, int player)
 	switch (result)
 	{
 		case Menu::CARRIER:
-			shipSelection.displayCarrier(mMainWindow);
 			shipT.loadFromFile("images/AircraftCarrier.png");
 			break;
 
 		case Menu::BATTLESHIP:
-			shipSelection.displayBattleship(mMainWindow);
 			shipT.loadFromFile("images/Battleship.png");
 			break;
 
 		case Menu::DESTROYER:
-			shipSelection.displayDestroyer(mMainWindow);
 			shipT.loadFromFile("images/Destroyer.png");
 			break;
 
 		case Menu::SUB:
-			shipSelection.displaySubmarine(mMainWindow);
 			shipT.loadFromFile("images/Submarine.png");
 			break;
 
 		case Menu::PATROL_BOAT:
-			shipSelection.displayPatrolBoat(mMainWindow);
 			shipT.loadFromFile("images/PatrolBoat.png");
 			break;
 

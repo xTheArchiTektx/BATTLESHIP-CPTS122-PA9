@@ -1,6 +1,8 @@
 #include "ShipsMenu.hpp"
 Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 {
+	mMenuItems.clear();
+
 		// Load and texture from file.
 	mMenuT.loadFromFile("images/shipmenu.png");
 
@@ -17,7 +19,7 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 		// Carrier item coordinates.
 	MenuItem carrier;
 	carrier.mRect.top = 148;
-	carrier.mRect.height = 27; // bottom - top
+	carrier.mRect.height = 26; // bottom - top
 	carrier.mRect.left = 99;
 	carrier.mRect.width = 131; // right - left
 	carrier.action = CARRIER;
@@ -55,7 +57,6 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 	destroyer.action = DESTROYER;
 
 		// Add the buttons to the list.
-	mMenuItems.push_back(confirm);
 	mMenuItems.push_back(patrolBoat);
 	mMenuItems.push_back(battleship);
 	mMenuItems.push_back(submarine);
@@ -67,7 +68,204 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 	window.draw(mMenuScreen);
 	window.display();
 
-	GetMenuResponse(window);
+	Menu::MenuResult result = GetMenuResponse(window);
+	MenuResult ship = NOTHING;
+
+	while (result != CONFIRM)
+	{
+		if (result == CARRIER)
+		{
+			displayCarrier(window);
+
+			mMenuItems.clear();
+			mMenuItems.push_back(battleship);
+			mMenuItems.push_back(destroyer);
+			mMenuItems.push_back(submarine);
+			mMenuItems.push_back(patrolBoat);
+			mMenuItems.push_back(confirm);
+
+			while (ship == NOTHING)
+			{
+				ship = GetMenuResponse(window);
+
+				if (ship == CONFIRM)
+				{
+					ship = CARRIER;
+					result = CONFIRM;
+				}
+				else if (ship == BATTLESHIP)
+				{
+					result = BATTLESHIP;
+				}
+				else if (ship == DESTROYER)
+				{
+					result = DESTROYER;
+				}
+				else if (ship == SUB)
+				{
+					result = SUB;
+				}
+				else if (ship == PATROL_BOAT)
+				{
+					result = PATROL_BOAT;
+				}
+			}
+		}
+		else if (result == BATTLESHIP)
+		{
+			displayBattleship(window);
+
+			mMenuItems.clear();
+			mMenuItems.push_back(battleship);
+			mMenuItems.push_back(destroyer);
+			mMenuItems.push_back(submarine);
+			mMenuItems.push_back(patrolBoat);
+			mMenuItems.push_back(confirm);
+
+			while (ship == NOTHING)
+			{
+				ship = GetMenuResponse(window);
+
+				if (ship == CONFIRM)
+				{
+					ship = BATTLESHIP;
+					result = CONFIRM;
+				}
+				else if (ship == CARRIER)
+				{
+					result = CARRIER;
+				}
+				else if (ship == DESTROYER)
+				{
+					result = DESTROYER;
+				}
+				else if (ship == SUB)
+				{
+					result = SUB;
+				}
+				else if (ship == PATROL_BOAT)
+				{
+					result = PATROL_BOAT;
+				}
+			}
+		}
+		else if (result == DESTROYER)
+		{
+			displayDestroyer(window);
+
+			mMenuItems.clear();
+			mMenuItems.push_back(battleship);
+			mMenuItems.push_back(destroyer);
+			mMenuItems.push_back(submarine);
+			mMenuItems.push_back(patrolBoat);
+			mMenuItems.push_back(confirm);
+
+			while (ship == NOTHING)
+			{
+				ship = GetMenuResponse(window);
+
+				if (ship == CONFIRM)
+				{
+					ship = DESTROYER;
+					result = CONFIRM;
+				}
+				else if (ship == BATTLESHIP)
+				{
+					result = BATTLESHIP;
+				}
+				else if (ship == CARRIER)
+				{
+					result = CARRIER;
+				}
+				else if (ship == SUB)
+				{
+					result = SUB;
+				}
+				else if (ship == PATROL_BOAT)
+				{
+					result = PATROL_BOAT;
+				}
+			}
+		}
+		else if (result == SUB)
+		{
+			displaySubmarine(window);
+
+			mMenuItems.clear();
+			mMenuItems.push_back(battleship);
+			mMenuItems.push_back(destroyer);
+			mMenuItems.push_back(submarine);
+			mMenuItems.push_back(patrolBoat);
+			mMenuItems.push_back(confirm);
+
+			while (ship == NOTHING)
+			{
+				ship = GetMenuResponse(window);
+
+				if (ship == CONFIRM)
+				{
+					ship = SUB;
+					result = CONFIRM;
+				}
+				else if (ship == BATTLESHIP)
+				{
+					result = BATTLESHIP;
+				}
+				else if (ship == CARRIER)
+				{
+					result = CARRIER;
+				}
+				else if (ship == DESTROYER)
+				{
+					result = DESTROYER;
+				}
+				else if (ship == PATROL_BOAT)
+				{
+					result = PATROL_BOAT;
+				}
+			}
+		}
+		else if (result == PATROL_BOAT)
+		{
+			displayPatrolBoat(window);
+
+			mMenuItems.clear();
+			mMenuItems.push_back(battleship);
+			mMenuItems.push_back(destroyer);
+			mMenuItems.push_back(submarine);
+			mMenuItems.push_back(patrolBoat);
+			mMenuItems.push_back(confirm);
+
+			while (ship == NOTHING)
+			{
+				ship = GetMenuResponse(window);
+
+				if (ship == CONFIRM)
+				{
+					ship = PATROL_BOAT;
+					result = CONFIRM;
+				}
+				else if (ship == BATTLESHIP)
+				{
+					result = BATTLESHIP;
+				}
+				else if (ship == CARRIER)
+				{
+					result = CARRIER;
+				}
+				else if (ship == SUB)
+				{
+					result = SUB;
+				}
+				else if (ship == DESTROYER)
+				{
+					result = DESTROYER;
+				}
+			}
+		}
+	}
+	
+	return ship;
 }
 
 void ShipsMenu::displayCarrier(sf::RenderWindow& window)
@@ -77,7 +275,9 @@ void ShipsMenu::displayCarrier(sf::RenderWindow& window)
 	Text l1;
 	l1.setFont(font);
 	l1.setString("Ship: Aircraft Carrier\nHits: 5\nDescription: ");
+	l1.setPosition(sf::Vector2f(300, 170));
 	window.draw(l1);
+	window.draw(mMenuScreen);
 	window.display();
 }
 
@@ -89,6 +289,7 @@ void ShipsMenu::displayBattleship(sf::RenderWindow& window)
 	l1.setFont(font);
 	l1.setString("Ship: Battleship\nHits: 4\nDescription: ");
 	window.draw(l1);
+	window.draw(mMenuScreen);
 	window.display();
 }
 
@@ -100,6 +301,7 @@ void ShipsMenu::displayDestroyer(sf::RenderWindow& window)
 	l1.setFont(font);
 	l1.setString("Ship: Destroyer\nHits: 3\nDescription: ");
 	window.draw(l1);
+	window.draw(mMenuScreen);
 	window.display();
 }
 
@@ -111,6 +313,7 @@ void ShipsMenu::displaySubmarine(sf::RenderWindow& window)
 	l1.setFont(font);
 	l1.setString("Ship: Submarine\nHits: 3\nDescription: ");
 	window.draw(l1);
+	window.draw(mMenuScreen);
 	window.display();
 }
 
@@ -122,5 +325,6 @@ void ShipsMenu::displayPatrolBoat(sf::RenderWindow& window)
 	l1.setFont(font);
 	l1.setString("Ship: Patrol Boat\nHits: 2\nDescription: ");
 	window.draw(l1);
+	window.draw(mMenuScreen);
 	window.display();
 }
