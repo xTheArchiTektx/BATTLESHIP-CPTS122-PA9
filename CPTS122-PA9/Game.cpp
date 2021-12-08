@@ -1,5 +1,5 @@
 #include "Game.hpp"
-#include "GameBoardDisplay.hpp"
+
 using sf::Color;
 /***********************************************\
 	Function Name: isExiting()
@@ -207,7 +207,7 @@ void Game::showMenu(void)
 		mGameState = OPTION;
 
 	case Menu::CREDIT:
-		mGameState = CREDIT;
+		mGameState = OPTION;
 	}
 }
 
@@ -215,8 +215,6 @@ void Game::showOptions(void)
 {
 	Options optionsMenu;
 	Menu::MenuResult result = optionsMenu.show(mMainWindow);
-	//Options::optionsresult result = optionsMenu.show(mMainWindow);
-
 
 	// Set the game state.
 	switch (result)
@@ -256,29 +254,44 @@ void Game::showCredits(void)
 
 void Game::showRules(void)
 {
-	DisplayScreen rules;
-	Text text;
-	Font font;
-	font.loadFromFile("fonts/BlackOpsOne-Regular.ttf");
-	text.setFont(font);
-	text.setString("Click any button to continue");
-	rules.setFont("fonts/BlackOpsOne-Regular.ttf");
-	rules.setTexture("images/rules");
-	rules.show(text, false, mMainWindow);
+	Rules rulesMenu;
+	Menu::MenuResult result = rulesMenu.show(mMainWindow);
 
-	mGameState = SHOWING_MENU;
+	// Set the game state.
+	switch (result)
+	{
+	case Menu::MenuResult::BACK:
+		mGameState = SHOWING_MENU;
+		break;
+
+	case Menu::MenuResult::CONTROLS:
+		mGameState = CONTROLS;
+		break;
+
+	case Menu::MenuResult::AUDIO:
+		mGameState = AUDIO;
+		break;
+	}
 }
 
 void Game::showAudio(void)
 {
 	Audio audioMenu;
 	Menu::MenuResult result = audioMenu.show(mMainWindow);
-	//Audio::AudioResult result = audioMenu.show(mMainWindow);
 
+	// Set the game state.
 	switch (result)
 	{
 	case Menu::MenuResult::BACK:
 		mGameState = SHOWING_MENU;
+		break;
+
+	case Menu::MenuResult::CONTROLS:
+		mGameState = CONTROLS;
+		break;
+
+	case Menu::MenuResult::RULES:
+		mGameState = RULES;
 		break;
 	}
 }
@@ -288,10 +301,19 @@ void Game::showControls(void)
 	Controls controlsMenu;
 	Menu::MenuResult result = controlsMenu.show(mMainWindow);
 
+	// Set the game state.
 	switch (result)
 	{
 	case Menu::MenuResult::BACK:
 		mGameState = SHOWING_MENU;
+		break;
+
+	case Menu::MenuResult::RULES:
+		mGameState = RULES;
+		break;
+
+	case Menu::MenuResult::AUDIO:
+		mGameState = AUDIO;
 		break;
 	}
 }

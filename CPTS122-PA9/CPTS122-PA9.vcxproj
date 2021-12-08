@@ -159,6 +159,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Options.cpp" />
+    <ClCompile Include="Rules.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="ShipsMenu.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
@@ -172,6 +173,7 @@
     <ClInclude Include="Menu.hpp" />
     <ClInclude Include="Options.hpp" />
     <ClInclude Include="PA9.hpp" />
+    <ClInclude Include="Rules.hpp" />
     <ClInclude Include="Ship.hpp" />
     <ClInclude Include="shipCordList.hpp" />
     <ClInclude Include="ShipsMenu.hpp" />

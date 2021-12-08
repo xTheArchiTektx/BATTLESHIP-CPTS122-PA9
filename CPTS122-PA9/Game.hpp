@@ -14,6 +14,8 @@
 #include "SplashScreen.hpp"
 #include "Ship.hpp"
 #include "ShipsMenu.hpp"
+#include "GameBoardDisplay.hpp"
+#include "Rules.hpp"
 
 class Game
 {
@@ -21,7 +23,7 @@ private:
 		// Data Types
 	typedef enum gamestate
 	{
-		UNINITIALIZED, SHOWING_SPLASH, PAUSED, SHOWING_MENU, PLAYER1_BOARD, PLAYER2_BOARD, EXITING, CREDIT, OPTION, RULES, AUDIO, VIDEO, CONTROLS, SHIP_MENU,
+		UNINITIALIZED, SHOWING_SPLASH, PAUSED, SHOWING_MENU, PLAYER1_BOARD, PLAYER2_BOARD, EXITING, CREDIT, OPTION, RULES, AUDIO, CONTROLS, SHIP_MENU
 	}GameState;
 
 		// Data Members

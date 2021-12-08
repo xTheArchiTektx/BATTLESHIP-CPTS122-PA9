@@ -1,11 +1,19 @@
-#include "Audio.hpp"
+#include "Rules.hpp"
 
-Menu::MenuResult Audio::show(sf::RenderWindow& window)
+Menu::MenuResult Rules::show(sf::RenderWindow& window)
 {
 	// Load and texture from file.
-	mMenuT.loadFromFile("images/audiomenu.png");
+	mMenuT.loadFromFile("images/rulesmenu.png");
 
 	/** Setup clickable regions **/
+
+		// Audio menu item coordinates
+	MenuItem audioButton;
+	audioButton.mRect.top = 136;
+	audioButton.mRect.height = 36; // bottom - top
+	audioButton.mRect.left = 120;
+	audioButton.mRect.width = 90; // right - left
+	audioButton.action = AUDIO;
 
 	// Controls item coordinates
 	MenuItem controlsButton;
@@ -15,14 +23,6 @@ Menu::MenuResult Audio::show(sf::RenderWindow& window)
 	controlsButton.mRect.width = 112;
 	controlsButton.action = CONTROLS;
 
-	// Rules item coordinates
-	MenuItem rulesButton;
-	rulesButton.mRect.top = 136;
-	rulesButton.mRect.height = 36;
-	rulesButton.mRect.left = 362;
-	rulesButton.mRect.width = 90;
-	rulesButton.action = RULES;
-
 	// Back item coordinates
 	MenuItem backButton;
 	backButton.mRect.top = 457;
@@ -31,12 +31,12 @@ Menu::MenuResult Audio::show(sf::RenderWindow& window)
 	backButton.mRect.width = 100;
 	backButton.action = BACK;
 
-		// Add the buttons to the list.
+	// Add the buttons to the list.
+	mMenuItems.push_back(audioButton);
 	mMenuItems.push_back(controlsButton);
-	mMenuItems.push_back(rulesButton);
 	mMenuItems.push_back(backButton);
 
-		// Display the texture to the screen.
+	// Display the texture to the screen.
 	mMenuScreen.setTexture(mMenuT);
 	window.draw(mMenuScreen);
 	window.display();
