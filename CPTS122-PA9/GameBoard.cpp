@@ -24,6 +24,8 @@ BoardGrid GameBoard::getGrid(void)
 
 void GameBoard::show(bool isSound, RenderWindow& appWindow)
 {
+	appWindow.draw(mScreenBack);
+	appWindow.draw(screenText);
 
 }
 
@@ -96,5 +98,6 @@ void GameBoard::drawMarkers(RenderWindow& appWindow)
 
 void GameBoard::insertSprite(Sprite newSprite)
 {
-
+	ListNode<Sprite>* newNode = this->shotList.getHead()->makeNode(newSprite);
+	shotList.insert(newNode);
 }

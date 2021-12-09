@@ -20,7 +20,11 @@ public:
 		yAxis = newNode.yAxis;
 		mpNextPtr = newNode.mpNextPtr;
 	}
-	
+	CordListNode(int newX, int newY) {
+		xAxis = newX;
+		yAxis = newY;
+		mpNextPtr = nullptr;
+	}
 	//Setters
 	void setY(int newY) { yAxis = newY; };
 	void setX(int newX) { xAxis = newX; };
