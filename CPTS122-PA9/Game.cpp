@@ -84,7 +84,6 @@ void Game::gameLoop(void)
 					{
 						string input;
 						input += static_cast<char>(currentEvent.text.unicode);
-						
 						if (input[0] == 'r')
 						{
 							if (shipd == Ship::RIGHT)
@@ -92,23 +91,25 @@ void Game::gameLoop(void)
 							else
 								shipd = Ship::RIGHT;
 						}
-						else if (std::isdigit((int)input[0]))
+						else if (std::isdigit((int)input[0]) != 0)
 						{
 							gameBoard_p1.setText(input, 1);
 							gameBoard_p1.setTextPos(sf::Vector2f(440, 50), 1);
 							gameBoard_p1.show(true, mMainWindow);
-							mMainWindow.display();
+							//mMainWindow.display();
 							xCurr = input[0];
+							xCurr = xCurr - 1; //Sets to the array index
 						}
 						else
 						{
 							gameBoard_p1.setText(input, 2);
 							gameBoard_p1.setTextPos(sf::Vector2f(490, 50), 2);
 							gameBoard_p1.show(true, mMainWindow);
-							mMainWindow.display();
-							yCurr = (YCoordinates)input[0];
+							//mMainWindow.display();
 
+							yCurr = findyCurr(input[0]);
 						}
+						mMainWindow.display();
 					}
 
 					if (currentEvent.type == sf::Event::KeyPressed && currentEvent.KeyPressed == sf::Keyboard::Enter)
@@ -119,7 +120,7 @@ void Game::gameLoop(void)
 						case Menu::CARRIER:
 							newShip = new Ship(5, 0, 28, 140, "Carrier", Color::Red);
 							newShip->setTexture(mShipT);
-
+							
 							break;
 
 						case Menu::BATTLESHIP:
@@ -146,11 +147,20 @@ void Game::gameLoop(void)
 						{
 							newShip->getSprite().rotate(-90);
 							newShip->setCorrdinates(shipd, xCurr, yCurr);
+							gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip->getSprite()));
+							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::UP);
+						}
+						else
+						{
+							newShip->setCorrdinates(shipd, xCurr, yCurr);
+							gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip->getSprite()));
+							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::RIGHT);
 						}
 						gameBoard_p1.getSList().insert(gameBoard_p1.getSList().getHead()->makeNode(*newShip));
+						gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode((newShip->getSprite())));
 						shipCount++;
-						mGameState == SHIP_MENU;
 					}
+					mGameState == SHIP_MENU;
 				}
 				else
 				{
@@ -419,11 +429,47 @@ Texture Game::showShipsMenu(int shipCount, int player)
 			currShip = Menu::PATROL_BOAT;
 			break;
 	}
-
 	mGameState = PLAYER1_BOARD;
 	//return shipT;
 }
-
+int Game::findyCurr(char input)
+{
+	int newCord;
+	switch (input)
+	{
+	case 'A':
+		newCord = YCoordinates::A;
+		break;
+	case 'B':
+		newCord = YCoordinates::B;
+		break;
+	case 'C':
+		newCord = YCoordinates::C;
+		break;
+	case 'D':
+		newCord = YCoordinates::D;
+		break;
+	case 'E':
+		newCord = YCoordinates::E;
+		break;
+	case 'F':
+		newCord = YCoordinates::F;
+		break;
+	case 'G':
+		newCord = YCoordinates::G;
+		break;
+	case 'H':
+		newCord = YCoordinates::H;
+		break;
+	case 'I':
+		newCord = YCoordinates::I;
+		break;
+	case 'J':
+		newCord = YCoordinates::J;
+		break;
+	}
+	return newCord;
+}
 // Static Variables
 Game::GameState Game::mGameState = UNINITIALIZED;
 sf::RenderWindow Game::mMainWindow;

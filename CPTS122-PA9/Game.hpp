@@ -54,6 +54,7 @@ private:
 	static void showAudio(void);
 	static void showControls(void);
 	static Texture showShipsMenu(int shipCount, int player);
+	static int findyCurr(char input);
 
 public:
 		// Member Functons

@@ -4,6 +4,7 @@
 #include "LinkedList.hpp"
 #include "boardGrid.hpp"
 #include "Ship.hpp"
+#include "Game.hpp";
 class GameBoard
 {
 public:
@@ -34,6 +35,7 @@ public:
 	void drawMarkers(RenderWindow& appWindow);
 	void insertSprite(Sprite newSprite);
 	void insertShip(Ship newSprite);
+	void putShipOnGrid(Ship newShip, int StartX, int StartY, Ship::direction placementDir);
 protected:
 
 private:

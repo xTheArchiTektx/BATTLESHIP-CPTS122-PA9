@@ -142,6 +142,25 @@ void GameBoard::insertShip(Ship newShip)
 	ListNode<Ship>* newNode = new ListNode<Ship>(newShip);
 	
 }
-
+void GameBoard::putShipOnGrid(Ship newShip, int StartX, int StartY,Ship::direction placementDir)
+{
+	switch (placementDir)
+	{
+	case Ship::UP:
+		for (int i = 0; i < newShip.getGridLength(); i++)
+		{
+			Grid& temp = this->mapGrid.getTargetGrid(StartX, StartY+i);
+			temp.setCondition(Grid::OCCUPIED);
+		}
+		break;
+	case Ship::RIGHT:
+		for (int i = 0; i < newShip.getGridLength(); i++)
+		{
+			Grid& temp = this->mapGrid.getTargetGrid(StartX+i, StartY);
+			temp.setCondition(Grid::OCCUPIED);
+		}
+		break;
+	}
+}
 //int GameBoard::ZWApixLocationX = 96;
 //int GameBoard::ZWApixLocationY = 107;
