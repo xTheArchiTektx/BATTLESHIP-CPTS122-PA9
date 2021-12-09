@@ -10,8 +10,8 @@ class GameBoard
 {
 public:
 	//Constructor and Destructor
-	GameBoard(void) {};
-	~GameBoard(void) {};
+	GameBoard() {};
+	~GameBoard() {};
 
 	//setters
 	void setFont(string font);

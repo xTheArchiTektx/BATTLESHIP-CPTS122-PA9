@@ -1,7 +1,7 @@
 #pragma once
 #include "PA9.hpp"
 #include "Ship.hpp"
-#include "shipCordList.hpp"
+
 Ship::Ship()
 {
 	this->gridLength = 0;

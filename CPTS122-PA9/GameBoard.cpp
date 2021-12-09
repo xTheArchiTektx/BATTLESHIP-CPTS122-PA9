@@ -26,7 +26,7 @@ void GameBoard::show(bool isSound, RenderWindow& appWindow)
 {
 	appWindow.draw(mScreenBack);
 	appWindow.draw(screenText);
-
+	this->drawMarkers(appWindow);
 }
 
 void GameBoard::loadDefault(void) //loads the default game screen music text
