@@ -32,7 +32,6 @@ public:
 	CordListNode* getNext(void) { return mpNextPtr; };
 	
 	//Member Functions
-
 private:
 	int xAxis;
 	int yAxis;
@@ -65,6 +64,11 @@ public:
 	int getSize(void) { return listSize; };
 
 	//Member Functions
+	void insert(CordListNode& newNode) {
+		newNode.setNxt(mpHead);
+		mpHead = &newNode;
+	}
+
 private:
 	CordListNode* mpHead;
 	int listSize;
