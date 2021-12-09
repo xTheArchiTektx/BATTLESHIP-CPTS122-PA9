@@ -34,7 +34,6 @@ bool Game::isExiting(void)
 void Game::gameLoop(void)
 {
 	int shipCount = 0, player = 1;
-	Texture shipT;
 
 	switch (mGameState)
 	{
@@ -326,30 +325,29 @@ Texture Game::showShipsMenu(int shipCount, int player)
 	ShipsMenu shipSelection;
 	Menu::MenuResult result = Menu::NOTHING;
 	Menu::MenuResult ship = Menu::NOTHING;
-	Texture shipT;
 
 	result = shipSelection.show(mMainWindow);
 
 	switch (result)
 	{
 		case Menu::CARRIER:
-			shipT.loadFromFile("images/AircraftCarrier.png");
+			mShipT.loadFromFile("images/AircraftCarrier.png");
 			break;
 
 		case Menu::BATTLESHIP:
-			shipT.loadFromFile("images/Battleship.png");
+			mShipT.loadFromFile("images/Battleship.png");
 			break;
 
 		case Menu::DESTROYER:
-			shipT.loadFromFile("images/Destroyer.png");
+			mShipT.loadFromFile("images/Destroyer.png");
 			break;
 
 		case Menu::SUB:
-			shipT.loadFromFile("images/Submarine.png");
+			mShipT.loadFromFile("images/Submarine.png");
 			break;
 
 		case Menu::PATROL_BOAT:
-			shipT.loadFromFile("images/PatrolBoat.png");
+			mShipT.loadFromFile("images/PatrolBoat.png");
 			break;
 	}
 
@@ -361,3 +359,4 @@ Texture Game::showShipsMenu(int shipCount, int player)
 Game::GameState Game::mGameState = UNINITIALIZED;
 sf::RenderWindow Game::mMainWindow;
 int Game::mPlayers = 1;
+Texture Game::mShipT;

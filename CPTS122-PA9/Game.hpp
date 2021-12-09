@@ -30,6 +30,7 @@ private:
 	static GameState mGameState;
 	static sf::RenderWindow mMainWindow;
 	static int mPlayers;
+	static Texture mShipT; 
 
 		// Setters
 	static int setPlayers(void);
