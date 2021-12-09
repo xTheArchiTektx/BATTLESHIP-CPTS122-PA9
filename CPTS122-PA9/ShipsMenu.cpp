@@ -116,7 +116,7 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 			displayBattleship(window);
 
 			mMenuItems.clear();
-			mMenuItems.push_back(battleship);
+			mMenuItems.push_back(carrier);
 			mMenuItems.push_back(destroyer);
 			mMenuItems.push_back(submarine);
 			mMenuItems.push_back(patrolBoat);
@@ -155,7 +155,7 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 
 			mMenuItems.clear();
 			mMenuItems.push_back(battleship);
-			mMenuItems.push_back(destroyer);
+			mMenuItems.push_back(carrier);
 			mMenuItems.push_back(submarine);
 			mMenuItems.push_back(patrolBoat);
 			mMenuItems.push_back(confirm);
@@ -194,7 +194,7 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 			mMenuItems.clear();
 			mMenuItems.push_back(battleship);
 			mMenuItems.push_back(destroyer);
-			mMenuItems.push_back(submarine);
+			mMenuItems.push_back(carrier);
 			mMenuItems.push_back(patrolBoat);
 			mMenuItems.push_back(confirm);
 
@@ -233,7 +233,7 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 			mMenuItems.push_back(battleship);
 			mMenuItems.push_back(destroyer);
 			mMenuItems.push_back(submarine);
-			mMenuItems.push_back(patrolBoat);
+			mMenuItems.push_back(carrier);
 			mMenuItems.push_back(confirm);
 
 			while (ship == NOTHING)
@@ -274,10 +274,11 @@ void ShipsMenu::displayCarrier(sf::RenderWindow& window)
 	font.loadFromFile("fonts/BlackOpsOne-Regular.ttf");
 	Text l1;
 	l1.setFont(font);
+	l1.setCharacterSize(12);
 	l1.setString("Ship: Aircraft Carrier\nHits: 5\nDescription: ");
-	l1.setPosition(sf::Vector2f(300, 170));
-	window.draw(l1);
+	l1.setPosition(sf::Vector2f(275, 170));
 	window.draw(mMenuScreen);
+	window.draw(l1);
 	window.display();
 }
 
@@ -287,9 +288,11 @@ void ShipsMenu::displayBattleship(sf::RenderWindow& window)
 	font.loadFromFile("fonts/BlackOpsOne-Regular.ttf");
 	Text l1;
 	l1.setFont(font);
+	l1.setCharacterSize(12);
 	l1.setString("Ship: Battleship\nHits: 4\nDescription: ");
-	window.draw(l1);
+	l1.setPosition(sf::Vector2f(275, 170));
 	window.draw(mMenuScreen);
+	window.draw(l1);
 	window.display();
 }
 
@@ -299,9 +302,11 @@ void ShipsMenu::displayDestroyer(sf::RenderWindow& window)
 	font.loadFromFile("fonts/BlackOpsOne-Regular.ttf");
 	Text l1;
 	l1.setFont(font);
+	l1.setCharacterSize(12);
 	l1.setString("Ship: Destroyer\nHits: 3\nDescription: ");
-	window.draw(l1);
+	l1.setPosition(sf::Vector2f(275, 170));
 	window.draw(mMenuScreen);
+	window.draw(l1);
 	window.display();
 }
 
@@ -311,9 +316,11 @@ void ShipsMenu::displaySubmarine(sf::RenderWindow& window)
 	font.loadFromFile("fonts/BlackOpsOne-Regular.ttf");
 	Text l1;
 	l1.setFont(font);
+	l1.setCharacterSize(12);
 	l1.setString("Ship: Submarine\nHits: 3\nDescription: ");
-	window.draw(l1);
+	l1.setPosition(sf::Vector2f(275, 170));
 	window.draw(mMenuScreen);
+	window.draw(l1);
 	window.display();
 }
 
@@ -323,8 +330,10 @@ void ShipsMenu::displayPatrolBoat(sf::RenderWindow& window)
 	font.loadFromFile("fonts/BlackOpsOne-Regular.ttf");
 	Text l1;
 	l1.setFont(font);
+	l1.setCharacterSize(12);
 	l1.setString("Ship: Patrol Boat\nHits: 2\nDescription: ");
-	window.draw(l1);
+	l1.setPosition(sf::Vector2f(275, 170));
 	window.draw(mMenuScreen);
+	window.draw(l1);
 	window.display();
 }
