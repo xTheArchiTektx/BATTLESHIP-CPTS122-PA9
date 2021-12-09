@@ -18,7 +18,8 @@ public:
 	void setFont(string font);
 	void setTexture(string texture);
 	void setMusic(string music);
-	
+	void setText(string str, int num);
+	void setTextPos(sf::Vector2f vec, int num);
 
 	//getters
 	LinkedList<Sprite>getList(void);
@@ -42,5 +43,6 @@ private:
 	LinkedList<Sprite> shotList; //used to store the sprites being used to mark the grids (also contains the ship sprites)
 	BoardGrid mapGrid;
 	Text screenText;
+	Text t2;
 	//RenderWindow& applicationWin;//must be set in constructor
 };

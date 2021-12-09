@@ -34,6 +34,7 @@ bool Game::isExiting(void)
 void Game::gameLoop(void)
 {
 	int shipCount = 0, player = 1;
+	Ship::direction shipd = Ship::RIGHT;
 
 	switch (mGameState)
 	{
@@ -72,14 +73,48 @@ void Game::gameLoop(void)
 		{
 			if (mPlayers == 1)
 			{
-				GameBoard gameBoard_p1, gameBoard_cpu;
 				if (shipCount < 5)
 				{
 					// Place Ships
-					gameBoard_p1.loadDefault();
+					
 					gameBoard_p1.show(true, mMainWindow);
+					mMainWindow.display();
 
-					system("pause");
+					if (currentEvent.type == sf::Event::TextEntered && currentEvent.text.unicode < 128)
+					{
+						string input;
+						input += static_cast<char>(currentEvent.text.unicode);
+						
+						if (input[0] == 'r')
+						{
+							if (shipd == Ship::RIGHT)
+								shipd = Ship::UP;
+							else
+								shipd = Ship::RIGHT;
+						}
+						else if (std::isdigit((int)input[0]))
+						{
+							gameBoard_p1.setText(input, 1);
+							gameBoard_p1.setTextPos(sf::Vector2f(440, 50), 1);
+							gameBoard_p1.show(true, mMainWindow);
+							mMainWindow.display();
+						}
+						else
+						{
+							gameBoard_p1.setText(input, 2);
+							gameBoard_p1.setTextPos(sf::Vector2f(490, 50), 2);
+							gameBoard_p1.show(true, mMainWindow);
+							mMainWindow.display();
+						}
+					}
+
+					if (currentEvent.type == sf::Event::KeyPressed && currentEvent.KeyPressed == sf::Keyboard::Enter)
+					{
+
+
+						shipCount++;
+						mGameState == SHIP_MENU;
+					}
 				}
 				else
 				{
@@ -144,6 +179,9 @@ void Game::start(void)
 	// Create a window.
 	mMainWindow.create(sf::VideoMode(560, 560), "BATTLESHIP!");
 	mGameState = SHOWING_SPLASH;
+
+		// INITIALIZATION
+	gameBoard_p1.loadDefault();
 
 	// Run the gameloop.
 	while (!isExiting())
@@ -357,3 +395,5 @@ Game::GameState Game::mGameState = UNINITIALIZED;
 sf::RenderWindow Game::mMainWindow;
 int Game::mPlayers = 1;
 Texture Game::mShipT;
+GameBoard Game::gameBoard_p1;
+GameBoard Game::gameBoard_cpu;

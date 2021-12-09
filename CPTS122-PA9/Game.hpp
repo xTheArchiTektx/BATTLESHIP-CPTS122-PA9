@@ -31,6 +31,8 @@ private:
 	static sf::RenderWindow mMainWindow;
 	static int mPlayers;
 	static Texture mShipT; 
+	static GameBoard gameBoard_p1;
+	static GameBoard gameBoard_cpu;
 
 		// Setters
 	static int setPlayers(void);

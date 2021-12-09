@@ -13,6 +13,30 @@ void GameBoard::setMusic(string music)
 	mAudio.openFromFile(music);
 }
 
+void GameBoard::setText(string str, int num)
+{
+	if (num == 1)
+	{
+		screenText.setString(str);
+	}
+	else
+	{
+		t2.setString(str);
+	}
+}
+
+void GameBoard::setTextPos(sf::Vector2f vec, int num)
+{
+	if (num == 1)
+	{
+		screenText.setPosition(vec);
+	}
+	else
+	{
+		t2.setPosition(vec);
+	}
+}
+
 LinkedList<Sprite>GameBoard::getList(void)
 {
 	return shotList;
@@ -26,6 +50,7 @@ void GameBoard::show(bool isSound, RenderWindow& appWindow)
 {
 	appWindow.draw(mScreenBack);
 	appWindow.draw(screenText);
+	appWindow.draw(t2);
 	this->drawMarkers(appWindow);
 }
 
@@ -36,6 +61,9 @@ void GameBoard::loadDefault(void) //loads the default game screen music text
 		screenText.setFont(mScreenFont);
 		screenText.setFillColor(sf::Color::White);
 		screenText.setCharacterSize(20);
+		t2.setFont(mScreenFont);
+		t2.setFillColor(sf::Color::White);
+		t2.setCharacterSize(20);
 	}
 	if (mScreenImage.loadFromFile("images/GameBoard.png"))
 	{
