@@ -48,3 +48,27 @@ Ship::Ship(const Ship& newShip)
 //	this->shipColor = rhs.shipColor;
 //	return *this;
 //}
+
+void Ship::setCorrdinates(direction placement, int start_x, int start_y)
+{
+	
+	
+	switch (placement)
+	{
+	case RIGHT:
+		for (int i = 0; i < this->gridLength; i++)
+		{
+			CordListNode* newNode= new CordListNode(start_x, start_y);
+			this->shipCoordinates.insert(*newNode);
+			start_x++;
+		}
+		break;
+	case UP:
+		for (int i = 0; i < this->gridLength; i++)
+		{
+			CordListNode* newNode = new CordListNode(start_x, start_y);
+			this->shipCoordinates.insert(*newNode);
+			start_y--;
+		}
+	}
+}
