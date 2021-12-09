@@ -25,9 +25,12 @@ public:
 	void setPixLength(int newPixL) { pixLength = newPixL; };
 	void setPixWidth(int newPixW) { pixWidth = newPixW; };
 	void setColor(sf::Color newColor) { shipColor = newColor; };
+	void setTexture(Texture shipTexture) { shipImage.setTexture(shipTexture); };
+
 	//getters
 	int getGridLength(void) { return gridLength; };
 	int getHits(void) { return numHits; };
+	Sprite getSprite(void) { return shipImage; };
 	ShipCordList getCordinates(void) { return shipCoordinates; };
 	std::string getName(void) { return shipName; };
 	int getPixLength(void) { return pixLength; };
@@ -39,6 +42,7 @@ public:
 //	Ship& operator=(const Ship& rhs);
 private:
 	std::string shipName;
+	Sprite shipImage;
 	int pixLength;
 	int pixWidth;
 	int gridLength;

@@ -3,7 +3,7 @@
 #include "GameBoardDisplay.hpp"
 #include "LinkedList.hpp"
 #include "boardGrid.hpp"
-
+#include "Ship.hpp"
 class GameBoard
 {
 public:
@@ -23,6 +23,7 @@ public:
 
 	//getters
 	LinkedList<Sprite>getList(void);
+	LinkedList<Ship>getSList(void);
 	BoardGrid getGrid(void);
 
 	//Member Functions
@@ -32,6 +33,7 @@ public:
 	Grid::GridCondition checkGrid(int xCord, int yCord); //Checks the grid inputed and returns the grids current condition
 	void drawMarkers(RenderWindow& appWindow);
 	void insertSprite(Sprite newSprite);
+	void insertShip(Ship newSprite);
 protected:
 
 private:
@@ -44,5 +46,6 @@ private:
 	BoardGrid mapGrid;
 	Text screenText;
 	Text t2;
+	LinkedList<Ship> shipList;
 	//RenderWindow& applicationWin;//must be set in constructor
 };

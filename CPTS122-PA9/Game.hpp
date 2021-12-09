@@ -25,7 +25,10 @@ private:
 	{
 		UNINITIALIZED, SHOWING_SPLASH, PAUSED, SHOWING_MENU, PLAYER1_BOARD, PLAYER2_BOARD, EXITING, CREDIT, OPTION, RULES, AUDIO, CONTROLS, SHIP_MENU
 	}GameState;
-
+	typedef enum ycoordinates
+	{
+		A,B,C,D,E,F,G,H,I,J
+	}YCoordinates;
 		// Data Members
 	static GameState mGameState;
 	static sf::RenderWindow mMainWindow;
@@ -33,7 +36,9 @@ private:
 	static Texture mShipT; 
 	static GameBoard gameBoard_p1;
 	static GameBoard gameBoard_cpu;
-
+	static Menu::MenuResult currShip;
+	static int xCurr;
+	static int yCurr;
 		// Setters
 	static int setPlayers(void);
 

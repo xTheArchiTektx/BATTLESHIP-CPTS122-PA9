@@ -132,5 +132,16 @@ void GameBoard::insertSprite(Sprite newSprite)
 	shotList.insert(newNode);
 }
 
+LinkedList<Ship>GameBoard::getSList(void)
+{
+	return shipList;
+}
+
+void GameBoard::insertShip(Ship newShip)
+{
+	ListNode<Ship>* newNode = new ListNode<Ship>(newShip);
+	
+}
+
 //int GameBoard::ZWApixLocationX = 96;
 //int GameBoard::ZWApixLocationY = 107;
