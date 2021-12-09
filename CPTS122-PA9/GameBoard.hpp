@@ -2,6 +2,7 @@
 #include "PA9.hpp"
 #include "mapGrid.hpp"
 #include "LinkedList.hpp"
+#include "boardGrid.hpp"
 	const int pixLocationX = 96;
 	const int pixLocationY = 107;
 
@@ -28,7 +29,7 @@ public:
 	bool updateGrid(int xCord, int yCord);//puts x for hit or miss on screen
 	Grid::gridCondition checkGrid(int xCord, int yCord); //Checks the grid inputed and returns the grids current condition
 	void drawMarkers(RenderWindow& appWindow);
-
+	void insertSprite(Sprite newSprite);
 protected:
 
 private:
@@ -37,7 +38,7 @@ private:
 	Sprite mScreenBack;
 	Music mAudio;
 	//std::list<Sprite> shotList;
-	LinkedList<Sprite> shotList; //used to store the sprites being used to mark the grid
+	LinkedList<Sprite> shotList; //used to store the sprites being used to mark the grids (also contains the ship sprites)
 	BoardGrid mapGrid;
 	Text screenText;
 	//RenderWindow& applicationWin;//must be set in constructor

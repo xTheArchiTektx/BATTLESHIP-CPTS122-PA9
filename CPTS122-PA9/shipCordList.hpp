@@ -67,6 +67,7 @@ public:
 	void insert(CordListNode& newNode) {
 		newNode.setNxt(mpHead);
 		mpHead = &newNode;
+		listSize++;
 	}
 
 private:

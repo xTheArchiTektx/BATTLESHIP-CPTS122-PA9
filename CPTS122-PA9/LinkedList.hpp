@@ -17,7 +17,7 @@ public:
 	
 	ListNode* getNext(void) { return nextNode; };
 	LList getData(void) { return mData; };
-	ListNode<LList> makeNode(LList newData)
+	ListNode<LList>* makeNode(LList newData)
 	{
 		return new ListNode(newData);
 	}
@@ -39,9 +39,9 @@ public:
 	}
 	~LinkedList(void) {};
 	ListNode<LList>* getHead(void) { return mpHead; };
-	void insert(ListNode<LList> newNode)
+	void insert(ListNode<LList>* newNode)
 	{
-		newNode.setNext(newNode);
+		newNode->setNext(newNode);
 		mpHead = newNode;
 	}
 private:
