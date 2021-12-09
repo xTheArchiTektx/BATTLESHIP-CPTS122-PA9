@@ -34,7 +34,6 @@ bool Game::isExiting(void)
 void Game::gameLoop(void)
 {
 	int shipCount = 0, player = 1;
-	Texture shipT;
 
 	switch (mGameState)
 	{
@@ -73,13 +72,14 @@ void Game::gameLoop(void)
 		{
 			if (mPlayers == 1)
 			{
-				GameBoardDisplay gameBoard_p1, gameBoard_cpu;
+				GameBoard gameBoard_p1, gameBoard_cpu;
 				if (shipCount < 5)
 				{
 					// Place Ships
-					gameBoard_p1.loadGraphics();
+					gameBoard_p1.loadDefault();
 					gameBoard_p1.show(true, mMainWindow);
 
+					system("pause");
 				}
 				else
 				{
@@ -119,7 +119,7 @@ void Game::gameLoop(void)
 			break;
 
 		case SHIP_MENU:
-			shipT = showShipsMenu(shipCount, player);
+			showShipsMenu(shipCount, player);
 			break;
 	}
 	}
@@ -322,55 +322,38 @@ Texture Game::showShipsMenu(int shipCount, int player)
 	ShipsMenu shipSelection;
 	Menu::MenuResult result = Menu::NOTHING;
 	Menu::MenuResult ship = Menu::NOTHING;
-	Texture shipT;
 
 	result = shipSelection.show(mMainWindow);
 
 	switch (result)
 	{
 		case Menu::CARRIER:
-			shipT.loadFromFile("images/AircraftCarrier.png");
+			mShipT.loadFromFile("images/AircraftCarrier.png");
 			break;
 
 		case Menu::BATTLESHIP:
-			shipT.loadFromFile("images/Battleship.png");
+			mShipT.loadFromFile("images/Battleship.png");
 			break;
 
 		case Menu::DESTROYER:
-			shipT.loadFromFile("images/Destroyer.png");
+			mShipT.loadFromFile("images/Destroyer.png");
 			break;
 
 		case Menu::SUB:
-			shipT.loadFromFile("images/Submarine.png");
+			mShipT.loadFromFile("images/Submarine.png");
 			break;
 
 		case Menu::PATROL_BOAT:
-			shipT.loadFromFile("images/PatrolBoat.png");
-			break;
-
-		case Menu::CONFIRM:
-			if (ship == Menu::NOTHING)
-			{
-				result = Menu::NOTHING;
-			}
-			else
-			{
-				if (player == 2)
-				{
-					mGameState = PLAYER2_BOARD;
-				}
-				else
-				{
-					mGameState = PLAYER1_BOARD;
-				}
-			}
+			mShipT.loadFromFile("images/PatrolBoat.png");
 			break;
 	}
 
-	return shipT;
+	mGameState = PLAYER1_BOARD;
+	//return shipT;
 }
 
 // Static Variables
 Game::GameState Game::mGameState = UNINITIALIZED;
 sf::RenderWindow Game::mMainWindow;
 int Game::mPlayers = 1;
+Texture Game::mShipT;
