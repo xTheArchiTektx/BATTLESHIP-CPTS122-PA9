@@ -59,7 +59,7 @@ bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on scre
 		missImage.setPosition(sf::Vector2f(xLoc, yLoc));
 		Grid& bGrid = mapGrid.getTargetGrid(xCord, yCord);
 		bGrid.setCondition(Grid::MISS);
-		shotList.insert(missImage);
+		shotList.insert(shotList.getHead()->makeNode(missImage));
 	}
 	else if (checkGrid(xCord, yCord) == Grid::OCCUPIED)
 	{
@@ -70,7 +70,7 @@ bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on scre
 		hitImage.setPosition(sf::Vector2f(xLoc, yLoc));
 		Grid& bGrid = mapGrid.getTargetGrid(xCord, yCord);
 		bGrid.setCondition(Grid::HIT);
-		shotList.insert(hitImage);
+		shotList.insert(shotList.getHead()->makeNode(hitImage));
 	}
 	else
 	{
@@ -92,4 +92,9 @@ void GameBoard::drawMarkers(RenderWindow& appWindow)
 		appWindow.draw(temp->getData());
 		temp = temp->getNext();
 	}
+}
+
+void GameBoard::insertSprite(Sprite newSprite)
+{
+
 }
