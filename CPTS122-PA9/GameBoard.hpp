@@ -1,14 +1,15 @@
 #pragma once
-#include "PA9.hpp"
-#include "mapGrid.hpp"
+
+#include "GameBoardDisplay.hpp"
 #include "LinkedList.hpp"
 #include "boardGrid.hpp"
-	const int pixLocationX = 96;
-	const int pixLocationY = 107;
 
 class GameBoard
 {
 public:
+//	static int ZWApixLocationX;
+//	static int ZWApixLocationY;
+
 	//Constructor and Destructor
 	GameBoard(void) {};
 	~GameBoard(void) {};
@@ -27,7 +28,7 @@ public:
 	void show(bool isSound, RenderWindow& appWindow);
 	void loadDefault(void); //loads the default game screen music text
 	bool updateGrid(int xCord, int yCord);//puts x for hit or miss on screen
-	Grid::gridCondition checkGrid(int xCord, int yCord); //Checks the grid inputed and returns the grids current condition
+	Grid::GridCondition checkGrid(int xCord, int yCord); //Checks the grid inputed and returns the grids current condition
 	void drawMarkers(RenderWindow& appWindow);
 	void insertSprite(Sprite newSprite);
 protected:

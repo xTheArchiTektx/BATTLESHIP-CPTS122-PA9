@@ -2,12 +2,13 @@
 #include "PA9.hpp"
 #include "SplashScreen.hpp"
 #include "mapGrid.hpp"
+
 class GameBoardDisplay : public SplashScreen
 {
 public:
 	//inherits show()
 	virtual bool loadGraphics(void);
-	Grid getGrid(void) { return mapGrid; };
+	Grid getGrid(void);
 
 protected:
 	//None

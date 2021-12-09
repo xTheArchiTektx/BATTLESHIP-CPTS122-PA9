@@ -1,4 +1,5 @@
 #include "ShipsMenu.hpp"
+
 Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 {
 	mMenuItems.clear();
@@ -42,10 +43,10 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 
 		// Patrol Boat item coordinates.
 	MenuItem patrolBoat;
-	patrolBoat.mRect.top = 400;
+	patrolBoat.mRect.top = 433;
 	patrolBoat.mRect.height = 27; // bottom - top
-	patrolBoat.mRect.left = 275;
-	patrolBoat.mRect.width = 225; // right - left
+	patrolBoat.mRect.left = 104;
+	patrolBoat.mRect.width = 52; // right - left
 	patrolBoat.action = PATROL_BOAT;
 
 	// Destroyer item coordinates.
@@ -57,11 +58,11 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 	destroyer.action = DESTROYER;
 
 		// Add the buttons to the list.
-	mMenuItems.push_back(patrolBoat);
 	mMenuItems.push_back(battleship);
 	mMenuItems.push_back(submarine);
 	mMenuItems.push_back(carrier);
 	mMenuItems.push_back(destroyer);
+	mMenuItems.push_back(patrolBoat);
 
 		// Display the texture to the screen.
 	mMenuScreen.setTexture(mMenuT);
@@ -73,6 +74,7 @@ Menu::MenuResult ShipsMenu::show(sf::RenderWindow& window)
 
 	while (result != CONFIRM)
 	{
+		ship = NOTHING;
 		if (result == CARRIER)
 		{
 			displayCarrier(window);

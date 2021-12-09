@@ -1,40 +1,37 @@
 #pragma once
+
 #include "PA9.hpp"
 
 class Grid
 {
 public:
-	enum gridCondition { OCCUPIED, HIT, EMPTY, MISS };
+	typedef enum gridcondition 
+	{ 
+		OCCUPIED, HIT, EMPTY, MISS 
+	}GridCondition;
+
 	//constructor
-	Grid()
-	{
-		xCord = 0;
-		yCord = 0;
-		currCondition = EMPTY;
-	}
+	Grid();
+
 	//Copy Constructor
-	Grid(const Grid& newGrid)
-	{
-		xCord = newGrid.xCord;
-		yCord = newGrid.yCord;
-		currCondition = newGrid.currCondition;
-	}
+	Grid(const Grid& newGrid);
+
 	//Destructor
-	~Grid() {};
+	~Grid();
 	//Setters
-	void setX(int newX) { xCord = newX; };
-	void setY(int newY) { yCord = newY; };
-	void setCondition(gridCondition newCondition) { currCondition = newCondition; };
+	void setX(int newX);
+	void setY(int newY);
+	void setCondition(GridCondition newCondition);
 	//getters
-	int getX(void) { return xCord; };
-	int getY(void) { return yCord; };
-	gridCondition getCurrentCond(void) { return currCondition; };
+	int getX(void);
+	int getY(void);
+	GridCondition getCurrentCond(void);
 
 	//Member Functions
 private:
 	int xCord;
 	int yCord;
-	gridCondition currCondition;
+	GridCondition currCondition;
 };
 
 
