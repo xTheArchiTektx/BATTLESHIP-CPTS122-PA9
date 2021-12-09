@@ -73,13 +73,17 @@ void Game::gameLoop(void)
 		{
 			if (mPlayers == 1)
 			{
-				GameBoardDisplay gameBoard_p1, gameBoard_cpu;
+				GameBoard gameBoard_p1, gameBoard_cpu;
 				if (shipCount < 5)
 				{
 					// Place Ships
-					gameBoard_p1.loadGraphics();
+					gameBoard_p1.loadDefault();
 					gameBoard_p1.show(true, mMainWindow);
 
+
+
+					mGameState = SHIP_MENU;
+					shipCount++;
 				}
 				else
 				{
@@ -119,7 +123,7 @@ void Game::gameLoop(void)
 			break;
 
 		case SHIP_MENU:
-			shipT = showShipsMenu(shipCount, player);
+			showShipsMenu(shipCount, player);
 			break;
 	}
 	}
@@ -347,27 +351,10 @@ Texture Game::showShipsMenu(int shipCount, int player)
 		case Menu::PATROL_BOAT:
 			shipT.loadFromFile("images/PatrolBoat.png");
 			break;
-
-		case Menu::CONFIRM:
-			if (ship == Menu::NOTHING)
-			{
-				result = Menu::NOTHING;
-			}
-			else
-			{
-				if (player == 2)
-				{
-					mGameState = PLAYER2_BOARD;
-				}
-				else
-				{
-					mGameState = PLAYER1_BOARD;
-				}
-			}
-			break;
 	}
 
-	return shipT;
+	mGameState = PLAYER1_BOARD;
+	//return shipT;
 }
 
 // Static Variables
