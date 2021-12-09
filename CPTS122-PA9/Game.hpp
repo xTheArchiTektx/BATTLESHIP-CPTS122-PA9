@@ -14,7 +14,6 @@
 #include "SplashScreen.hpp"
 #include "Ship.hpp"
 #include "ShipsMenu.hpp"
-#include "GameBoardDisplay.hpp"
 #include "Rules.hpp"
 #include "GameBoard.hpp"
 

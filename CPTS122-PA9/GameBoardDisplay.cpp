@@ -1,5 +1,9 @@
 #include "GameBoardDisplay.hpp"
 
+Grid GameBoardDisplay::getGrid(void)
+{ 
+	return mapGrid; 
+}
 bool GameBoardDisplay::loadGraphics(void)
 {
 	bool success = true;

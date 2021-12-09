@@ -152,12 +152,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Audio.cpp" />
+    <ClCompile Include="boardGrid.cpp" />
     <ClCompile Include="Controls.cpp" />
     <ClCompile Include="DisplayScreen.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameBoard.cpp" />
     <ClCompile Include="GameBoardDisplay.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="mapGrid.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="Options.cpp" />
     <ClCompile Include="Rules.cpp" />

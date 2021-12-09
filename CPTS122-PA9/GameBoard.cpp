@@ -19,7 +19,7 @@ LinkedList<Sprite>GameBoard::getList(void)
 }
 BoardGrid GameBoard::getGrid(void)
 {
-	return this->mapGrid;
+	return mapGrid;
 }
 
 void GameBoard::show(bool isSound, RenderWindow& appWindow)
@@ -50,8 +50,10 @@ void GameBoard::loadDefault(void) //loads the default game screen music text
 
 bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on screen
 {
-	int xLoc = pixLocationX + 28 * (xCord - 1);
-	int yLoc = pixLocationY + 28 * (yCord - 1);
+//	int xLoc = ZWApixLocationX + 28 * (xCord - 1);
+//	int yLoc = ZWApixLocationY + 28 * (yCord - 1);
+	int xLoc = 28 * (xCord - 1);
+	int yLoc = 28 * (yCord - 1);
 	if (checkGrid(xCord, yCord) == Grid::EMPTY)//shot was a miss
 	{
 		Texture missMarker;
@@ -81,7 +83,7 @@ bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on scre
 
 }
 
-Grid::gridCondition GameBoard::checkGrid(int xCord, int yCord)//Checks the grid inputed and returns the grids current condition
+Grid::GridCondition GameBoard::checkGrid(int xCord, int yCord)//Checks the grid inputed and returns the grids current condition
 {
 	return this->mapGrid.getTargetGrid(xCord, yCord).getCurrentCond();
 }
@@ -101,3 +103,6 @@ void GameBoard::insertSprite(Sprite newSprite)
 	ListNode<Sprite>* newNode = this->shotList.getHead()->makeNode(newSprite);
 	shotList.insert(newNode);
 }
+
+//int GameBoard::ZWApixLocationX = 96;
+//int GameBoard::ZWApixLocationY = 107;

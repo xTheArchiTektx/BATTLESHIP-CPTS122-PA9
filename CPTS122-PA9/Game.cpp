@@ -80,7 +80,6 @@ void Game::gameLoop(void)
 					gameBoard_p1.loadGraphics();
 					gameBoard_p1.show(true, mMainWindow);
 
-					system("pause");
 				}
 				else
 				{
