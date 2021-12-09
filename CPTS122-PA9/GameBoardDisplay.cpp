@@ -26,4 +26,5 @@ bool GameBoardDisplay::loadGraphics(void)
 		mScreenText.setString("Press Any Key to Continue...");
 		mScreenText.setPosition(sf::Vector2f(200, 450));
 	}
+	return success;
 }

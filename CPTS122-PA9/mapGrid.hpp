@@ -53,15 +53,16 @@ public:
 	int getYLocation(void) { return pixLocationY; };
 	int getXScale(void) { return xScale; };
 	int getYScale(void) { return yScale; };
-	Grid getGridArray(void) { return **gridArray; };
+	Grid* getGridArray(void) { return *gridArray; };
 
 	//Member Functions
 	void intilizeGrid(void);
-
-private:
-	//Location of upperLeft Pixel/Start of GameBoard
+	Grid& getTargetGrid(int xCord, int yCord) { return gridArray[xCord - 1][yCord - 1]; };
 	const int pixLocationX = 96;
 	const int pixLocationY = 107;
+private:
+	//Location of upperLeft Pixel/Start of GameBoard
+
 	//Size of game board window in pixels
 	const int xScale = 277;
 	const int yScale = 277;
@@ -87,6 +88,7 @@ void BoardGrid::intilizeGrid(void)
 		{
 			gridArray[i][j].setX(j + 1);
 			gridArray[i][j].setY(i + 1);
+			gridArray[i][j].setCondition(Grid::EMPTY);
 			j++;
 		}
 		j = 0;
