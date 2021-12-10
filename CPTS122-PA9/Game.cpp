@@ -164,7 +164,6 @@ void Game::gameLoop(void)
 				}
 				else
 				{
-					system("Pause");
 					cout << "Ships Placed!" << endl;
 				}
 			
