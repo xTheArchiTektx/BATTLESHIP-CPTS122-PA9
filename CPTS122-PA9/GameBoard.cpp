@@ -1,19 +1,19 @@
 #include "GameBoard.hpp"
 
-void GameBoard::setFont(string font)
+void GameBoard::setFont(std::string font)
 {
 	mScreenFont.loadFromFile(font);
 }
-void GameBoard::setTexture(string texture)
+void GameBoard::setTexture(std::string texture)
 {
 	mScreenImage.loadFromFile(texture);
 }
-void GameBoard::setMusic(string music)
+void GameBoard::setMusic(std::string music)
 {
 	mAudio.openFromFile(music);
 }
 
-void GameBoard::setText(string str, int num)
+void GameBoard::setText(std::string str, int num)
 {
 	if (num == 1)
 	{
@@ -88,10 +88,10 @@ bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on scre
 		Sprite missImage;
 		missMarker.loadFromFile("images/Miss.png");
 		missImage.setTexture(missMarker);
-		missImage.setPosition(sf::Vector2f(xLoc, yLoc));
+		missImage.setPosition(sf::Vector2f((float)xLoc, (float)yLoc));
 		Grid& bGrid = mapGrid.getTargetGrid(xCord, yCord);
 		bGrid.setCondition(Grid::MISS);
-		shotList.insert(shotList.getHead()->makeNode(missImage));
+		shotList.insert((shotList.getHead()->makeNode(missImage)));
 	}
 	else if (checkGrid(xCord, yCord) == Grid::OCCUPIED)
 	{
@@ -99,7 +99,7 @@ bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on scre
 		Sprite hitImage;
 		hitMarker.loadFromFile("images/Hit.png");
 		hitImage.setTexture(hitMarker);
-		hitImage.setPosition(sf::Vector2f(xLoc, yLoc));
+		hitImage.setPosition(sf::Vector2f((float)xLoc, (float)yLoc));
 		Grid& bGrid = mapGrid.getTargetGrid(xCord, yCord);
 		bGrid.setCondition(Grid::HIT);
 		shotList.insert(shotList.getHead()->makeNode(hitImage));

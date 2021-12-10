@@ -5,7 +5,7 @@
 #include "SFML/Network.hpp"
 #include "SFML/Window.hpp"
 #include "SFML/System.hpp"
-
+#include <sstream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string>

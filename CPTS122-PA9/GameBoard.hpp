@@ -4,7 +4,8 @@
 #include "LinkedList.hpp"
 #include "boardGrid.hpp"
 #include "Ship.hpp"
-#include "Game.hpp";
+#include "Game.hpp"
+
 class GameBoard
 {
 public:

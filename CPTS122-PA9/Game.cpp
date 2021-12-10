@@ -84,6 +84,7 @@ void Game::gameLoop(void)
 					{
 						string input;
 						input += static_cast<char>(currentEvent.text.unicode);
+						
 						if (input[0] == 'r')
 						{
 							if (shipd == Ship::RIGHT)
@@ -91,79 +92,43 @@ void Game::gameLoop(void)
 							else
 								shipd = Ship::RIGHT;
 						}
-						else if (std::isdigit((int)input[0]) != 0)
+						else if (std::isdigit((int)input[0]))
 						{
 							gameBoard_p1.setText(input, 1);
 							gameBoard_p1.setTextPos(sf::Vector2f(440, 50), 1);
 							gameBoard_p1.show(true, mMainWindow);
-							//mMainWindow.display();
-							xCurr = input[0];
-							xCurr = xCurr - 1; //Sets to the array index
+							mMainWindow.display();
 						}
 						else
 						{
 							gameBoard_p1.setText(input, 2);
 							gameBoard_p1.setTextPos(sf::Vector2f(490, 50), 2);
 							gameBoard_p1.show(true, mMainWindow);
-							//mMainWindow.display();
-
-							yCurr = findyCurr(input[0]);
+							mMainWindow.display();
 						}
-						mMainWindow.display();
 					}
 
 					if (currentEvent.type == sf::Event::KeyPressed && currentEvent.KeyPressed == sf::Keyboard::Enter)
 					{
-						Ship* newShip = nullptr;
-						switch (currShip)
-						{
-						case Menu::CARRIER:
-							newShip = new Ship(5, 0, 28, 140, "Carrier", Color::Red);
-							newShip->setTexture(mShipT);
-							
-							break;
-
-						case Menu::BATTLESHIP:
-							newShip = new Ship(4, 0, 28, 112, "Battleship", Color::Red);
-							newShip->setTexture(mShipT);
-							break;
-
-						case Menu::DESTROYER:
-							newShip = new Ship(3, 0, 28, 84, "Destroyer", Color::Red);
-							newShip->setTexture(mShipT);
-							break;
-
-						case Menu::SUB:
-							newShip = new Ship(3, 0, 28, 84, "Submarine", Color::Red);
-							newShip->setTexture(mShipT);
-							break;
-
-						case Menu::PATROL_BOAT:
-							newShip = new Ship(2, 0, 28, 56, "Patrol Boat", Color::Red);
-							newShip->setTexture(mShipT);
-							break;
-						}
-						if (shipd == Ship::UP)
-						{
-							newShip->getSprite().rotate(-90);
-							newShip->setCorrdinates(shipd, xCurr, yCurr);
-							gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip->getSprite()));
-							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::UP);
-						}
-						else
-						{
-							newShip->setCorrdinates(shipd, xCurr, yCurr);
-							gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip->getSprite()));
-							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::RIGHT);
-						}
-						gameBoard_p1.getSList().insert(gameBoard_p1.getSList().getHead()->makeNode(*newShip));
-						gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode((newShip->getSprite())));
 						shipCount++;
+						mGameState = SHIP_MENU;
 					}
-					mGameState == SHIP_MENU;
 				}
 				else
 				{
+					// Initialize ships.
+					Ship aircraftCarrier(5, 0, 28, 140, "Carrier", Color::Red);
+					Ship battleship(4, 0, 28, 112, "BattleShip", Color::Red);
+					Ship patrolBoat(2, 0, 28, 56, "Patrol Boat", Color::Red);
+					Ship submarine(3, 0, 28, 84, "Submarine", Color::Red);
+					Ship destroyer(3, 0, 28, 84, "Destroyer", Color::Red);
+					std::list<Ship> ships;
+
+					ships.push_back(aircraftCarrier);
+					ships.push_back(battleship);
+					ships.push_back(destroyer);
+					ships.push_back(submarine);
+					ships.push_back(patrolBoat);
 				}
 
 			if (currentEvent.type == sf::Event::MouseButtonPressed)
@@ -215,12 +180,6 @@ void Game::start(void)
 
 		// INITIALIZATION
 	gameBoard_p1.loadDefault();
-	Ship aircraftCarrier(5, 0, 28, 140, "Carrier", Color::Red);
-	Ship battleship(4, 0, 28, 112, "BattleShip", Color::Red);
-	Ship patrolBoat(2, 0, 28, 56, "Patrol Boat", Color::Red);
-	Ship submarine(3, 0, 28, 84, "Submarine", Color::Red);
-	Ship destroyer(3, 0, 28, 84, "Destroyer", Color::Red);
-	//gameBoard_p1.getSList().insert()
 
 	// Run the gameloop.
 	while (!isExiting())
@@ -406,70 +365,29 @@ Texture Game::showShipsMenu(int shipCount, int player)
 	{
 		case Menu::CARRIER:
 			mShipT.loadFromFile("images/AircraftCarrier.png");
-			currShip = Menu::CARRIER;
 			break;
 
 		case Menu::BATTLESHIP:
 			mShipT.loadFromFile("images/Battleship.png");
-			currShip = Menu::BATTLESHIP;
 			break;
 
 		case Menu::DESTROYER:
 			mShipT.loadFromFile("images/Destroyer.png");
-			currShip = Menu::DESTROYER;
 			break;
 
 		case Menu::SUB:
 			mShipT.loadFromFile("images/Submarine.png");
-			currShip = Menu::SUB;
 			break;
 
 		case Menu::PATROL_BOAT:
 			mShipT.loadFromFile("images/PatrolBoat.png");
-			currShip = Menu::PATROL_BOAT;
 			break;
 	}
+
 	mGameState = PLAYER1_BOARD;
 	//return shipT;
 }
-int Game::findyCurr(char input)
-{
-	int newCord;
-	switch (input)
-	{
-	case 'A':
-		newCord = YCoordinates::A;
-		break;
-	case 'B':
-		newCord = YCoordinates::B;
-		break;
-	case 'C':
-		newCord = YCoordinates::C;
-		break;
-	case 'D':
-		newCord = YCoordinates::D;
-		break;
-	case 'E':
-		newCord = YCoordinates::E;
-		break;
-	case 'F':
-		newCord = YCoordinates::F;
-		break;
-	case 'G':
-		newCord = YCoordinates::G;
-		break;
-	case 'H':
-		newCord = YCoordinates::H;
-		break;
-	case 'I':
-		newCord = YCoordinates::I;
-		break;
-	case 'J':
-		newCord = YCoordinates::J;
-		break;
-	}
-	return newCord;
-}
+
 // Static Variables
 Game::GameState Game::mGameState = UNINITIALIZED;
 sf::RenderWindow Game::mMainWindow;
@@ -477,6 +395,3 @@ int Game::mPlayers = 1;
 Texture Game::mShipT;
 GameBoard Game::gameBoard_p1;
 GameBoard Game::gameBoard_cpu;
-Menu::MenuResult Game::currShip;
-int Game::xCurr = 0;
-int Game::yCurr = 0;
