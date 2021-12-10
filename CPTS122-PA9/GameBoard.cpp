@@ -78,10 +78,8 @@ void GameBoard::loadDefault(void) //loads the default game screen music text
 
 bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on screen
 {
-//	int xLoc = ZWApixLocationX + 28 * (xCord - 1);
-//	int yLoc = ZWApixLocationY + 28 * (yCord - 1);
-	int xLoc = 28 * (xCord - 1);
-	int yLoc = 28 * (yCord - 1);
+	int xLoc = ZWApixLocationX + 28 * (xCord - 1);
+	int yLoc = ZWApixLocationY + 28 * (yCord - 1);
 	if (checkGrid(xCord, yCord) == Grid::EMPTY)//shot was a miss
 	{
 		Texture missMarker;
@@ -162,5 +160,5 @@ void GameBoard::putShipOnGrid(Ship newShip, int StartX, int StartY,Ship::directi
 		break;
 	}
 }
-//int GameBoard::ZWApixLocationX = 96;
-//int GameBoard::ZWApixLocationY = 107;
+int GameBoard::ZWApixLocationX = 96;
+int GameBoard::ZWApixLocationY = 107;

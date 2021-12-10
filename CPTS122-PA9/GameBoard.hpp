@@ -4,12 +4,12 @@
 #include "LinkedList.hpp"
 #include "boardGrid.hpp"
 #include "Ship.hpp"
-#include "Game.hpp";
+
 class GameBoard
 {
 public:
-//	static int ZWApixLocationX;
-//	static int ZWApixLocationY;
+	static int ZWApixLocationX;
+	static int ZWApixLocationY;
 
 	//Constructor and Destructor
 	GameBoard() {};
