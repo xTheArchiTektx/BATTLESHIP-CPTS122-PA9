@@ -138,7 +138,7 @@ LinkedList<Ship>GameBoard::getSList(void)
 void GameBoard::insertShip(Ship newShip)
 {
 	ListNode<Ship>* newNode = new ListNode<Ship>(newShip);
-	
+	this->shipList.insert(newNode);
 }
 void GameBoard::putShipOnGrid(Ship newShip, int StartX, int StartY,Ship::direction placementDir)
 {

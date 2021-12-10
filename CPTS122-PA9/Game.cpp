@@ -112,31 +112,32 @@ void Game::gameLoop(void)
 
 					if (currentEvent.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 					{
+						//Ship* newShip = nullptr;
 						Ship* newShip = nullptr;
 						switch (currShip)
 						{
 						case Menu::CARRIER:
-							newShip = new Ship(5, 0, 28, 140, "Carrier", Color::Red);
+							newShip = (new Ship(5, 0, 28, 140, "Carrier", Color::Red));
 							newShip->setTexture(mShipT);
 							break;
 
 						case Menu::BATTLESHIP:
-							newShip = new Ship(4, 0, 28, 112, "Battleship", Color::Red);
+							newShip = (new Ship(4, 0, 28, 112, "Battleship", Color::Red));
 							newShip->setTexture(mShipT);
 							break;
 
 						case Menu::DESTROYER:
-							newShip = new Ship(3, 0, 28, 84, "Destroyer", Color::Red);
+							newShip = (new Ship(3, 0, 28, 84, "Destroyer", Color::Red));
 							newShip->setTexture(mShipT);
 							break;
 
 						case Menu::SUB:
-							newShip = new Ship(3, 0, 28, 84, "Submarine", Color::Red);
+							newShip = (new Ship(3, 0, 28, 84, "Submarine", Color::Red));
 							newShip->setTexture(mShipT);
 							break;
 
 						case Menu::PATROL_BOAT:
-							newShip = new Ship(2, 0, 28, 56, "Patrol Boat", Color::Red);
+							newShip = (new Ship(2, 0, 28, 56, "Patrol Boat", Color::Red));
 							newShip->setTexture(mShipT);
 							break;
 						}
@@ -145,19 +146,19 @@ void Game::gameLoop(void)
 						{
 							newShip->getSprite().rotate(-90);
 							newShip->setCorrdinates(shipd, xCurr, yCurr);
-							gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip->getSprite()));
+							//gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip.getSprite()));
 							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::UP);
 						}
 						else
 						{
 							newShip->setCorrdinates(shipd, xCurr, yCurr);
-							gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip->getSprite()));
+							//gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip.getSprite()));
 							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::RIGHT);
 						}
-						gameBoard_p1.getSList().insert(gameBoard_p1.getSList().getHead()->makeNode(*newShip));
-						gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode((newShip->getSprite())));
+						//gameBoard_p1.getSList().insert(gameBoard_p1.getSList().getHead()->makeNode(newShip));
+						gameBoard_p1.insertSprite(newShip->getSprite());
 						shipCount++;
-
+						gameBoard_p1.insertShip(*newShip);
 						mGameState = SHIP_MENU;
 					}
 				}
