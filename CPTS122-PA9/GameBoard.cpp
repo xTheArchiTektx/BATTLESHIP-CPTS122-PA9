@@ -117,6 +117,12 @@ Grid::GridCondition GameBoard::checkGrid(int xCord, int yCord)//Checks the grid 
 void GameBoard::drawMarkers(RenderWindow& appWindow)
 {
 	ListNode<Sprite>* temp = shotList.getHead();
+	ListNode<Ship>* tempS = this->shipList.getHead();
+	while (tempS != nullptr)
+	{
+		appWindow.draw(tempS->getData().getSprite());
+		tempS = tempS->getNext();
+	}
 	while (temp != nullptr)
 	{
 		appWindow.draw(temp->getData());

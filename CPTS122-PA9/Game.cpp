@@ -112,32 +112,37 @@ void Game::gameLoop(void)
 
 					if (currentEvent.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 					{
-						//Ship* newShip = nullptr;
 						Ship* newShip = nullptr;
+						//Ship* newShip = new Ship;
 						switch (currShip)
 						{
 						case Menu::CARRIER:
 							newShip = (new Ship(5, 0, 28, 140, "Carrier", Color::Red));
+							mShipT.loadFromFile("images/AircraftCarrier.png");
 							newShip->setTexture(mShipT);
 							break;
 
 						case Menu::BATTLESHIP:
 							newShip = (new Ship(4, 0, 28, 112, "Battleship", Color::Red));
+							mShipT.loadFromFile("images/BattleShip.png");
 							newShip->setTexture(mShipT);
 							break;
 
 						case Menu::DESTROYER:
 							newShip = (new Ship(3, 0, 28, 84, "Destroyer", Color::Red));
+							mShipT.loadFromFile("images/Destroyer.png");
 							newShip->setTexture(mShipT);
 							break;
 
 						case Menu::SUB:
 							newShip = (new Ship(3, 0, 28, 84, "Submarine", Color::Red));
+							mShipT.loadFromFile("images/Submarine.png");
 							newShip->setTexture(mShipT);
 							break;
 
 						case Menu::PATROL_BOAT:
 							newShip = (new Ship(2, 0, 28, 56, "Patrol Boat", Color::Red));
+							mShipT.loadFromFile("images/PatrolBoat.png");
 							newShip->setTexture(mShipT);
 							break;
 						}
@@ -156,7 +161,7 @@ void Game::gameLoop(void)
 							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::RIGHT);
 						}
 						//gameBoard_p1.getSList().insert(gameBoard_p1.getSList().getHead()->makeNode(newShip));
-						gameBoard_p1.insertSprite(newShip->getSprite());
+						//gameBoard_p1.insertSprite(newShip->getSprite());
 						shipCount++;
 						gameBoard_p1.insertShip(*newShip);
 						mGameState = SHIP_MENU;

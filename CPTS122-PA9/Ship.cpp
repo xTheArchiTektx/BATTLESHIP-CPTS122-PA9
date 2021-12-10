@@ -34,6 +34,8 @@ Ship::Ship(const Ship& newShip)
 	this->shipName = newShip.shipName;
 	this->shipCoordinates = newShip.shipCoordinates;
 	this->shipColor = newShip.shipColor;
+	this->shipImage = newShip.shipImage;
+
 }
 
 //Ship& Ship::operator=(Ship& rhs)
@@ -68,5 +70,5 @@ void Ship::setCorrdinates(direction placement, int start_x, int start_y)
 			this->shipCoordinates.insert(*newNode);
 		}
 	}
-	this->getSprite().setPosition(sf::Vector2f((float)(96 + 28 * (start_x - 1)),(float)( 107 + 28 * (start_y - 1))));
+	this->shipImage.setPosition(sf::Vector2f((float)(96 + 28 * (start_x - 1)),(float)( 107 + 28 * (start_y - 1))));
 }
