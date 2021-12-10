@@ -162,19 +162,8 @@ void Game::gameLoop(void)
 				}
 				else
 				{
-					// Initialize ships.
-					Ship aircraftCarrier(5, 0, 28, 140, "Carrier", Color::Red);
-					Ship battleship(4, 0, 28, 112, "BattleShip", Color::Red);
-					Ship patrolBoat(2, 0, 28, 56, "Patrol Boat", Color::Red);
-					Ship submarine(3, 0, 28, 84, "Submarine", Color::Red);
-					Ship destroyer(3, 0, 28, 84, "Destroyer", Color::Red);
-					std::list<Ship> ships;
-
-					ships.push_back(aircraftCarrier);
-					ships.push_back(battleship);
-					ships.push_back(destroyer);
-					ships.push_back(submarine);
-					ships.push_back(patrolBoat);
+					system("Pause");
+					cout << "Ships Placed!" << endl;
 				}
 			
 				if (currentEvent.type == sf::Event::Closed)
@@ -427,8 +416,8 @@ Texture Game::showShipsMenu(int shipCount, int player)
 	}
 
 	mGameState = PLAYER1_BOARD;
-	//return shipT;
 }
+
 int Game::findyCurr(char input)
 {
 	int newCord = 0;

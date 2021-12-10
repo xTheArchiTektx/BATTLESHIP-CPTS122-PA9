@@ -42,7 +42,7 @@ void BoardGrid::intilizeGrid(void)
 	}
 }
 
-Grid& BoardGrid::getTargetGrid(int xCord, int yCord)
+Grid BoardGrid::getTargetGrid(int xCord, int yCord)
 { 
 	return gridArray[xCord - 1][yCord - 1]; 
 }

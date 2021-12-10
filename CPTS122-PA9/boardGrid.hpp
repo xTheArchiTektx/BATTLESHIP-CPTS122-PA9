@@ -21,7 +21,7 @@ public:
 
 	//Member Functions
 	void intilizeGrid(void);
-	Grid& getTargetGrid(int xCord, int yCord);
+	Grid getTargetGrid(int xCord, int yCord);
 	const int pixLocationX = 96;
 	const int pixLocationY = 107;
 private:
