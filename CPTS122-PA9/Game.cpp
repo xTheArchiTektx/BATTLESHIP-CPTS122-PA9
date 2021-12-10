@@ -161,6 +161,8 @@ void Game::gameLoop(void)
 				}
 				else
 				{
+					system("Pause");
+					cout << "Ships Placed!" << endl;
 				}
 			
 				if (currentEvent.type == sf::Event::Closed)
@@ -422,9 +424,10 @@ Texture Game::showShipsMenu(int shipCount, int player)
 			currShip = Menu::PATROL_BOAT;
 			break;
 	}
+
 	mGameState = PLAYER1_BOARD;
-	//return shipT;
 }
+
 int Game::findyCurr(char input)
 {
 	int newCord = 0;

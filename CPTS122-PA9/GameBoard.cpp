@@ -87,7 +87,7 @@ bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on scre
 		missMarker.loadFromFile("images/Miss.png");
 		missImage.setTexture(missMarker);
 		missImage.setPosition(sf::Vector2f(xLoc, yLoc));
-		Grid& bGrid = mapGrid.getTargetGrid(xCord, yCord);
+		Grid bGrid = mapGrid.getTargetGrid(xCord, yCord);
 		bGrid.setCondition(Grid::MISS);
 		shotList.insert(shotList.getHead()->makeNode(missImage));
 	}
@@ -98,7 +98,7 @@ bool GameBoard::updateGrid(int xCord, int yCord)//puts x for hit or miss on scre
 		hitMarker.loadFromFile("images/Hit.png");
 		hitImage.setTexture(hitMarker);
 		hitImage.setPosition(sf::Vector2f(xLoc, yLoc));
-		Grid& bGrid = mapGrid.getTargetGrid(xCord, yCord);
+		Grid bGrid = mapGrid.getTargetGrid(xCord, yCord);
 		bGrid.setCondition(Grid::HIT);
 		shotList.insert(shotList.getHead()->makeNode(hitImage));
 	}
@@ -147,14 +147,14 @@ void GameBoard::putShipOnGrid(Ship newShip, int StartX, int StartY,Ship::directi
 	case Ship::UP:
 		for (int i = 0; i < newShip.getGridLength(); i++)
 		{
-			Grid& temp = this->mapGrid.getTargetGrid(StartX, StartY+i);
+			Grid temp = this->mapGrid.getTargetGrid(StartX, StartY+i);
 			temp.setCondition(Grid::OCCUPIED);
 		}
 		break;
 	case Ship::RIGHT:
 		for (int i = 0; i < newShip.getGridLength(); i++)
 		{
-			Grid& temp = this->mapGrid.getTargetGrid(StartX+i, StartY);
+			Grid temp = this->mapGrid.getTargetGrid(StartX+i, StartY);
 			temp.setCondition(Grid::OCCUPIED);
 		}
 		break;
