@@ -76,7 +76,7 @@ void Game::gameLoop(void)
 				if (shipCount < 5)
 				{
 					// Place Ships
-					
+
 					gameBoard_p1.show(true, mMainWindow);
 					mMainWindow.display();
 
@@ -97,20 +97,66 @@ void Game::gameLoop(void)
 							gameBoard_p1.setText(input, 1);
 							gameBoard_p1.setTextPos(sf::Vector2f(440, 50), 1);
 							gameBoard_p1.show(true, mMainWindow);
-							mMainWindow.display();
+							xCurr = input[0];
+							xCurr = xCurr - 1; //Sets to the array index
 						}
 						else
 						{
 							gameBoard_p1.setText(input, 2);
 							gameBoard_p1.setTextPos(sf::Vector2f(490, 50), 2);
 							gameBoard_p1.show(true, mMainWindow);
-							mMainWindow.display();
+							yCurr = findyCurr(input[0]);
 						}
 					}
 
-					if (currentEvent.type == sf::Event::KeyPressed && currentEvent.KeyPressed == sf::Keyboard::Enter)
+					if (currentEvent.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 					{
+						Ship* newShip = nullptr;
+						switch (currShip)
+						{
+						case Menu::CARRIER:
+							newShip = new Ship(5, 0, 28, 140, "Carrier", Color::Red);
+							newShip->setTexture(mShipT);
+							break;
+
+						case Menu::BATTLESHIP:
+							newShip = new Ship(4, 0, 28, 112, "Battleship", Color::Red);
+							newShip->setTexture(mShipT);
+							break;
+
+						case Menu::DESTROYER:
+							newShip = new Ship(3, 0, 28, 84, "Destroyer", Color::Red);
+							newShip->setTexture(mShipT);
+							break;
+
+						case Menu::SUB:
+							newShip = new Ship(3, 0, 28, 84, "Submarine", Color::Red);
+							newShip->setTexture(mShipT);
+							break;
+
+						case Menu::PATROL_BOAT:
+							newShip = new Ship(2, 0, 28, 56, "Patrol Boat", Color::Red);
+							newShip->setTexture(mShipT);
+							break;
+						}
+
+						if (shipd == Ship::UP)
+						{
+							newShip->getSprite().rotate(-90);
+							newShip->setCorrdinates(shipd, xCurr, yCurr);
+							gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip->getSprite()));
+							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::UP);
+						}
+						else
+						{
+							newShip->setCorrdinates(shipd, xCurr, yCurr);
+							gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode(newShip->getSprite()));
+							gameBoard_p1.putShipOnGrid(*newShip, xCurr, yCurr, Ship::RIGHT);
+						}
+						gameBoard_p1.getSList().insert(gameBoard_p1.getSList().getHead()->makeNode(*newShip));
+						gameBoard_p1.getList().insert(gameBoard_p1.getList().getHead()->makeNode((newShip->getSprite())));
 						shipCount++;
+
 						mGameState = SHIP_MENU;
 					}
 				}
@@ -130,15 +176,11 @@ void Game::gameLoop(void)
 					ships.push_back(submarine);
 					ships.push_back(patrolBoat);
 				}
-
-			if (currentEvent.type == sf::Event::MouseButtonPressed)
-			{
-
-			}
-			else if (currentEvent.type == sf::Event::Closed)
-			{
-				mGameState = EXITING;
-			}
+			
+				if (currentEvent.type == sf::Event::Closed)
+				{
+					mGameState = EXITING;
+				}
 			}
 			else if (mPlayers == 2)
 			{
@@ -387,7 +429,74 @@ Texture Game::showShipsMenu(int shipCount, int player)
 	mGameState = PLAYER1_BOARD;
 	//return shipT;
 }
-
+int Game::findyCurr(char input)
+{
+	int newCord = 0;
+	switch (input)
+	{
+	case 'A':
+		newCord = 0;
+		break;
+	case 'B':
+		newCord = 1;
+		break;
+	case 'C':
+		newCord = 2;
+		break;
+	case 'D':
+		newCord = 3;
+		break;
+	case 'E':
+		newCord = 4;
+		break;
+	case 'F':
+		newCord = 5;
+		break;
+	case 'G':
+		newCord = 6;
+		break;
+	case 'H':
+		newCord = 7;
+		break;
+	case 'I':
+		newCord = 8;
+		break;
+	case 'J':
+		newCord = 9;
+		break;
+	case 'a':
+		newCord = 0;
+		break;
+	case 'b':
+		newCord = 1;
+		break;
+	case 'c':
+		newCord = 2;
+		break;
+	case 'd':
+		newCord = 3;
+		break;
+	case 'e':
+		newCord = 4;
+		break;
+	case 'f':
+		newCord = 5;
+		break;
+	case 'g':
+		newCord = 6;
+		break;
+	case 'h':
+		newCord = 7;
+		break;
+	case 'i':
+		newCord = 8;
+		break;
+	case 'j':
+		newCord = 9;
+		break;
+	}
+	return newCord;
+}
 // Static Variables
 Game::GameState Game::mGameState = UNINITIALIZED;
 sf::RenderWindow Game::mMainWindow;
