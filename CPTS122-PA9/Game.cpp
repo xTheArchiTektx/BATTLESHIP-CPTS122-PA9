@@ -78,6 +78,7 @@ void Game::gameLoop(void)
 					// Place Ships
 
 					gameBoard_p1.show(true, mMainWindow);
+					gameBoard_p1.drawMarkers(mMainWindow);
 					mMainWindow.display();
 
 					if (currentEvent.type == sf::Event::TextEntered && currentEvent.text.unicode < 128)
