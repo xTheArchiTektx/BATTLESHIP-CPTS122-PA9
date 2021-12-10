@@ -494,3 +494,6 @@ int Game::mPlayers = 1;
 Texture Game::mShipT;
 GameBoard Game::gameBoard_p1;
 GameBoard Game::gameBoard_cpu;
+Menu::MenuResult Game::currShip = Menu::NOTHING;
+int Game::xCurr = 0;
+int Game::yCurr = 0;
