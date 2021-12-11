@@ -5,7 +5,10 @@
 class Ship
 {
 public:
-	enum direction{UP,RIGHT};
+	typedef enum direction
+	{
+		UP,RIGHT
+	}Direction;
 
 	//constructor
 	Ship();
@@ -37,7 +40,7 @@ public:
 	int getPixWidth(void) { return pixWidth; };
 	sf::Color getColor(void) { return shipColor; };
 	//member functions
-	void setCorrdinates(direction placement, int start_x, int start_y);
+	void setCorrdinates(Direction placement, int start_x, int start_y);
 
 //	Ship& operator=(const Ship& rhs);
 private:

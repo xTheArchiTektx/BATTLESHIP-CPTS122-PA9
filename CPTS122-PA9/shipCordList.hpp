@@ -45,7 +45,10 @@ private:
 class ShipCordList
 {
 public:
-	enum direction{Left,Right,Up,Down};
+	typedef enum direction
+	{
+		Left, Right, Up, Down
+	}Direction;
 
 	//constructor 
 	ShipCordList() {
@@ -68,9 +71,10 @@ public:
 	int getSize(void) { return listSize; };
 
 	//Member Functions
-	void insert(CordListNode& newNode) {
-		newNode.setNxt(mpHead);
-		mpHead = &newNode;
+	void insert(CordListNode* newNode) 
+	{
+		newNode->setNxt(mpHead);
+		mpHead = newNode;
 		listSize++;
 	}
 

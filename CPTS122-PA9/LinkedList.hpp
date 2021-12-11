@@ -3,7 +3,7 @@
 
 
 
-template<typename LList>
+template<class LList>
 class ListNode
 {
 public:
@@ -19,7 +19,7 @@ public:
 	LList getData(void) { return mData; };
 	ListNode<LList>* makeNode(LList newData)
 	{
-		return new ListNode(newData);
+		return new ListNode<LList>(newData);
 	}
 	void setNext(ListNode<LList>* newNext) { nextNode = newNext; };
 	void setData(LList newData) { mData = newData; }
@@ -29,7 +29,7 @@ private:
 
 };
 
-template<typename LList>
+template<class LList>
 class LinkedList
 {
 public:
@@ -41,7 +41,7 @@ public:
 	ListNode<LList>* getHead(void) { return mpHead; };
 	void insert(ListNode<LList>* newNode)
 	{
-		newNode->setNext(newNode);
+		newNode->setNext(mpHead);
 		mpHead = newNode;
 	}
 private:

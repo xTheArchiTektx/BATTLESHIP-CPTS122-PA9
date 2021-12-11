@@ -50,25 +50,24 @@ Ship::Ship(const Ship& newShip)
 //	return *this;
 //}
 
-void Ship::setCorrdinates(direction placement, int start_x, int start_y)
+void Ship::setCorrdinates(Direction placement, int start_x, int start_y)
 {
-	
-	
 	switch (placement)
 	{
 	case RIGHT:
 		for (int i = 0; i < gridLength; i++)
 		{
-			CordListNode* newNode= new CordListNode(start_x+i, start_y);
-			this->shipCoordinates.insert(*newNode);
+			CordListNode* newNode= new CordListNode(start_x + i, start_y);
+			this->shipCoordinates.insert(newNode);
 		}
 		break;
 	case UP:
 		for (int i = 0; i < gridLength; i++)
 		{
 			CordListNode* newNode = new CordListNode(start_x, start_y-i);
-			this->shipCoordinates.insert(*newNode);
+			this->shipCoordinates.insert(newNode);
 		}
+		break;
 	}
-	this->shipImage.setPosition(sf::Vector2f((float)(96 + 28 * (start_x - 1)),(float)( 107 + 28 * (start_y - 1))));
+	shipImage.setPosition(sf::Vector2f(200, 200));	this->shipImage.setPosition(sf::Vector2f((float)(96 + 28 * (start_x - 1)),(float)( 107 + 28 * (start_y - 1))));
 }

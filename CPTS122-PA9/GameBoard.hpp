@@ -44,11 +44,9 @@ private:
 	Texture mScreenImage;
 	Sprite mScreenBack;
 	Music mAudio;
-	//std::list<Sprite> shotList;
 	LinkedList<Sprite> shotList; //used to store the sprites being used to mark the grids (also contains the ship sprites)
 	BoardGrid mapGrid;
 	Text screenText;
 	Text t2;
 	LinkedList<Ship> shipList;
-	//RenderWindow& applicationWin;//must be set in constructor
 };
