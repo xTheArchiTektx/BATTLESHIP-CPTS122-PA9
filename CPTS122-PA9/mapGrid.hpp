@@ -18,10 +18,12 @@ public:
 
 	//Destructor
 	~Grid();
+
 	//Setters
 	void setX(int newX);
 	void setY(int newY);
 	void setCondition(GridCondition newCondition);
+
 	//getters
 	int getX(void);
 	int getY(void);

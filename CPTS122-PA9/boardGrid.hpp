@@ -8,13 +8,13 @@ public:
 	enum Player { Player1, Player2 };
 	//Constructor
 	BoardGrid();
+
 	//Destructor
 	~BoardGrid();
-	//Setters
 
 	//Getters
-	//int getXLocation(void) { return pixLocationX; };
-	//int getYLocation(void) { return pixLocationY; };
+	int getXLocation(void) { return pixLocationX; };
+	int getYLocation(void) { return pixLocationY; };
 	int getXScale(void);
 	int getYScale(void);
 	Grid* getGridArray(void);
@@ -22,6 +22,8 @@ public:
 	//Member Functions
 	void intilizeGrid(void);
 	Grid getTargetGrid(int xCord, int yCord);
+
+
 	const int pixLocationX = 96;
 	const int pixLocationY = 107;
 private:

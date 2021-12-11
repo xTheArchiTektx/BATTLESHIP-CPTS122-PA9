@@ -166,6 +166,7 @@
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="ShipsMenu.cpp" />
     <ClCompile Include="SplashScreen.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Audio.hpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="shipCordList.hpp" />
     <ClInclude Include="ShipsMenu.hpp" />
     <ClInclude Include="SplashScreen.hpp" />
+    <ClInclude Include="Test.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

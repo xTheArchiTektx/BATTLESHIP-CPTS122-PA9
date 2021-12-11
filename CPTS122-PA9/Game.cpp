@@ -114,28 +114,28 @@ void Game::gameLoop(void)
 						switch (currShip)
 						{
 						case Menu::CARRIER:
-							newShip = Ship(5, 0, 28, 140, "Carrier", Color::Red);
-							newShip.setTexture(mShipT);
+							newShip = Ship(5, 0, 28, 140, "Carrier");
+							newShip.setTexture("images/AircraftCarrier.png");
 							break;
 
 						case Menu::BATTLESHIP:
-							newShip = Ship(4, 0, 28, 112, "Battleship", Color::Red);
-							newShip.setTexture(mShipT);
+							newShip = Ship(4, 0, 28, 112, "Battleship");
+							newShip.setTexture("images/BattleShip.png");
 							break;
 
 						case Menu::DESTROYER:
-							newShip = Ship(3, 0, 28, 84, "Destroyer", Color::Red);
-							newShip.setTexture(mShipT);
+							newShip = Ship(3, 0, 28, 84, "Destroyer");
+							newShip.setTexture("images/Destroyer.png");
 							break;
 
 						case Menu::SUB:
-							newShip = Ship(3, 0, 28, 84, "Submarine", Color::Red);
-							newShip.setTexture(mShipT);
+							newShip = Ship(3, 0, 28, 84, "Submarine");
+							newShip.setTexture("images/Submarine.png");
 							break;
 
 						case Menu::PATROL_BOAT:
-							newShip = Ship(2, 0, 28, 56, "Patrol Boat", Color::Red);
-							newShip.setTexture(mShipT);
+							newShip = Ship(2, 0, 28, 56, "Patrol Boat");
+							newShip.setTexture("images/PatrolBoat.png");
 							break;
 						}
 
@@ -185,19 +185,12 @@ void Game::gameLoop(void)
 					}
 					if (currentEvent.type == sf::Event::KeyPressed && sf::Keyboard::isKeyPressed(sf::Keyboard::Enter))
 					{
-						Ship newShip(1, 0, 28, 28, "Hit", sf::Color::White);
-						Texture hitT;
-						hitT.loadFromFile("images/Hit.png");
-						//newShip.setTexture(hitT);
-						//newShip.setCorrdinates(shipd, xCurr, yCurr);
-						//gameBoard_p1.putShipOnGrid(newShip, xCurr, yCurr, Ship::UP);
-						//gameBoard_p1.insertSprite(newShip.getSprite());
-						//gameBoard_p1.insertShip(newShip);
-						Sprite hit(hitT);
-						hit.setPosition(sf::Vector2f(200, 200));
-						mMainWindow.draw(hit);
-						mMainWindow.display();
-						system("pause");
+						Ship newShip(1, 0, 28, 28, "Hit");
+						newShip.setTexture("images/Hit.png");
+						newShip.setCorrdinates(shipd, xCurr, yCurr);
+						gameBoard_p1.putShipOnGrid(newShip, xCurr, yCurr, Ship::UP);
+						gameBoard_p1.insertSprite(newShip.getSprite());
+						gameBoard_p1.insertShip(newShip);
 					}
 				}
 			
@@ -422,7 +415,6 @@ void Game::showControls(void)
 Texture Game::showShipsMenu(int shipCount, int player)
 {
 	ShipsMenu shipSelection;
-	Menu::MenuResult ship = Menu::NOTHING;
 
 	currShip = shipSelection.show(mMainWindow);
 
@@ -434,7 +426,6 @@ Texture Game::showShipsMenu(int shipCount, int player)
 
 		case Menu::BATTLESHIP:
 			mShipT.loadFromFile("images/Battleship.png");
-			currShip = Menu::BATTLESHIP;
 			break;
 
 		case Menu::DESTROYER:
@@ -521,6 +512,7 @@ int Game::findyCurr(char input)
 	}
 	return newCord;
 }
+
 // Static Variables
 Game::GameState Game::mGameState = UNINITIALIZED;
 sf::RenderWindow Game::mMainWindow;

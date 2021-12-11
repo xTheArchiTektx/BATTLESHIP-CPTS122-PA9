@@ -12,14 +12,17 @@ public:
 
 	//constructor
 	Ship();
+
 	//Constructor w/ Values
 	Ship(int newGridLength, int newHits, int newPixWidth,
-		int newPixLength, std::string newName,
-		sf::Color newColor);
+		int newPixLength, std::string newName);
+
 	//cpy constructor
 	Ship(const Ship& newShip);
+
 	//destructor
 	~Ship() {};
+
 	//setters
 	void setGridLength(int newLength) { gridLength = newLength; };
 	void setHitNum(int newHit) { numHits = newHit; };
@@ -27,8 +30,11 @@ public:
 	void setName(std::string newName) { shipName = newName; };
 	void setPixLength(int newPixL) { pixLength = newPixL; };
 	void setPixWidth(int newPixW) { pixWidth = newPixW; };
-	void setColor(sf::Color newColor) { shipColor = newColor; };
-	void setTexture(Texture shipTexture) { shipImage.setTexture(shipTexture); };
+	void setTexture(string shipTexture) 
+	{ 
+		shipT.loadFromFile(shipTexture);
+		shipImage.setTexture(shipT); 
+	};
 
 	//getters
 	int getGridLength(void) { return gridLength; };
@@ -38,22 +44,17 @@ public:
 	std::string getName(void) { return shipName; };
 	int getPixLength(void) { return pixLength; };
 	int getPixWidth(void) { return pixWidth; };
-	sf::Color getColor(void) { return shipColor; };
+
 	//member functions
 	void setCorrdinates(Direction placement, int start_x, int start_y);
 
-//	Ship& operator=(const Ship& rhs);
 private:
 	std::string shipName;
+	Texture shipT;
 	Sprite shipImage;
 	int pixLength;
 	int pixWidth;
 	int gridLength;
-	sf::Color shipColor;
 	int numHits;
 	ShipCordList shipCoordinates;
-	//std::list<int> shipCoordinates;
-	
-protected:
-
 };
